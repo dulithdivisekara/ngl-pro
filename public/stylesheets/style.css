@@ -1,0 +1,2111 @@
+html {
+    background: #EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%);
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    height: -webkit-fill-available;
+}
+
+body {
+    font: 14px "Avenir Next", Helvetica, Arial, sans-serif;
+}
+
+.container {
+    width: 85%;
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    width: 100%
+}
+
+a {
+    cursor: pointer;
+}
+
+.bubble {
+    display: block;
+    margin-top:44px;
+    border-radius: 24px;
+}
+
+.header {
+    padding:16px 16px 12px;
+    font-size:16px;
+    background-color: white;
+    border-radius: 32px 32px 0 0;
+    display: flex;
+    align-items: top;
+    justify-content: left;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 56px;
+    margin-top: 16px;
+}
+
+.pfp-container {
+    border-radius:300px;
+    width:40px;
+    height:40px;
+    background-color: #F1F1F1;
+    background-image: url('/images/avatar.webp');
+    background-position:center center;
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    display: block;
+  }
+
+.pfp {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.user-container {
+    margin-left:12px;
+    font-size: 14px;
+}
+
+.username {
+    font-weight: 500;
+}
+
+.prompt {
+    font-weight: bold;
+}
+
+.textarea-container {
+    width:100%;
+    margin-bottom:10px;
+    background-color:rgba(255,255,255,0.4);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 0 0 24px 24px;
+    position: relative;
+    -webkit-appearance: none;
+}
+
+.top-left-corner {
+    position:absolute;
+    top:0;
+    left:0;
+    background: url(/images/top-left-corner.svg);
+    width:24px;
+    height:24px;
+}
+
+.top-right-corner {
+    position:absolute;
+    top:0;
+    right:0;
+    background: url(/images/top-right-corner.svg);
+    width:24px;
+    height:24px;
+}
+
+textarea {
+    width:100%;
+    padding:18px 24px;
+    height:140px;
+    box-sizing: border-box;
+    font-size:20px;
+    font-weight: 600;
+    border:none;
+    outline:none;
+    background-color: transparent;
+}
+
+textarea::placeholder {
+    color: rgba(0,0,0,0.25);
+}
+
+.dice-button {
+    position:absolute;
+    bottom: 16px;
+    right: 16px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.25);
+    padding: 8px;
+    border-radius: 100px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    touch-action: manipulation;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button, .submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: black;
+    border-radius: 100px;
+    border: none;
+    font-size: 18px;
+    font-weight: 700;
+    color:white;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    height: 60px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.rizz-button {
+    display: none;
+}
+
+.button-white {
+    background: white;
+    color: black;
+}
+
+.button-translucent {
+    background: rgba(255,255,255,0.5);
+    color: black;
+}
+
+.button-small {
+    width: auto;
+    /* flex-grow: 20px; */
+    height: 48px;
+    font-size: 15px;
+    padding: 0 24px 1px;
+}
+
+.pulse {
+    animation: animate-shake 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes animate-shake {
+    0%,
+    10%,
+    65%,
+    100% {
+      transform: rotate(0deg) scale(1.0);
+    }
+
+    30%,
+    40% {
+      transform: rotate(-1deg) scale(1.05);
+    }
+
+    35%,
+    45% {
+      transform: rotate(1deg) scale(1.05);
+    }
+}
+
+.submit:disabled {
+    text-indent: -9999px;
+}
+
+.submit:disabled::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: loading-spinner 1s ease infinite;
+}
+
+@keyframes loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+.bottom {
+    position: absolute;
+    bottom: env(safe-area-inset-bottom);
+    left: 8%;
+    right: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-container {
+    text-align: center;
+}
+
+.logo {
+    object-fit: cover;
+    width:75%;
+    margin-top: 40%
+}
+
+.check {
+    display: inline-block;
+    width: 15vh;
+    height: 15vh;
+    /* margin-top: 20%; */
+}
+
+.sent {
+    font-weight: 700;
+    font-size: 20px;
+    color:#fff;
+    margin: 0;
+}
+
+.download-prompt {
+    font-size: 16px;
+    font-weight: 700;
+    color:white;
+    margin: 0;
+    text-align: center;
+}
+
+.home-subtitle {
+    margin: 0 auto;
+    margin-top:24px;
+    font-size:24px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.another {
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-size:18px;
+    margin: 0;
+    display: inline-block;
+    border-bottom: 2px solid white;
+}
+
+.bottom-container {
+    bottom: calc(env(safe-area-inset-bottom) + 100px);
+    position: absolute;
+    width: 85%;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 35px;
+    padding-top: 32px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.anonymous-tooltip {
+    margin-top:12px;
+    font-size:14px;
+    color:white;
+    margin-bottom:12px;
+    text-align: center;
+}
+
+.ad-container.sticky-top-ad {
+    position: fixed;
+    top: 1rem;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    text-align: center;
+    max-height: 50px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body.has-sticky-ad {
+    padding-top: calc(50px + 1rem);
+}
+
+body.has-sticky-ad .bubble {
+    margin-top: 1rem;
+}
+
+/* Keyboard-open state: reduce spacing so ad stays visible */
+.keyboard-open .bubble {
+    margin-top: 10px;
+}
+
+.keyboard-open textarea {
+    height: 100px;
+}
+
+/* Small height devices (e.g. iPhone SE, iPhone 12 mini) */
+@media screen and (max-height: 700px) {
+    .keyboard-open .bubble {
+        margin-top: 6px;
+    }
+    .keyboard-open textarea {
+        height: 80px;
+    }
+}
+
+/* Short viewports, e.g. X's in-app sheet (NGL-908): the download block is
+ * anchored to the viewport bottom while the form flows from the top, so below
+ * ~660px they collide. The deficit comes off the anchor offset and the textarea
+ * — never the ad slot, which is `position: fixed` and outside this budget. */
+@media screen and (max-height: 660px) {
+    .bottom-container {
+        bottom: calc(env(safe-area-inset-bottom) + 56px);
+    }
+    textarea {
+        height: 100px;
+    }
+    .anonymous-tooltip {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+}
+
+/* Second tier: the first one is not enough once Send is visible. The offset
+ * shrinks further but never to zero — the 100px default is what keeps the
+ * download button clear of Snapchat's bottom chrome (890bc24). */
+@media screen and (max-height: 560px) {
+    .bottom-container {
+        bottom: calc(env(safe-area-inset-bottom) + 40px);
+        padding-bottom: 24px;
+    }
+    .bottom-container .space2 {
+        height: 8px;
+    }
+    .header {
+        padding: 12px 16px 8px;
+    }
+    textarea {
+        height: 80px;
+    }
+}
+
+/* Landscape phones: the content cannot fit at all, so back into the flow and let
+ * the page scroll. `relative` and not `static`, or the absolutely positioned
+ * Terms & Privacy escapes the block and lands on the line above it. */
+@media screen and (max-height: 500px) {
+    .bottom-container {
+        position: relative;
+        bottom: auto;
+    }
+}
+
+/* ===== Share-asset styled pages (NGL-796) =====
+ * Scoped to .share-styled / .share-fg-*, which the layout emits only for a style
+ * resolved from the link (path segment, or `?style=`). Without one the page must
+ * render exactly as before — the rollout keeps a 10% holdout, so a style leaking
+ * into the control arm would contaminate the measurement.
+ *
+ * Only .share-fg-dark needs rules; white text is already the default. */
+
+/* Card body sits on artwork instead of the flat gradient, so it needs more
+ * opacity to keep the typed message readable (design: 70%, was 40%). */
+body.share-styled .textarea-container {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* The dark artwork is photographic, so its luminance varies across the page and
+ * no single text colour clears AA everywhere: on pt_sans_narrow, white over the
+ * upper band measures 3.64:1 while black over the lower band measures 2.41:1.
+ * A shadow keeps the white legible over the light patches without changing the
+ * colour the design specified — the same thing both apps do for text over
+ * photographic share art. */
+body.share-fg-light .anonymous-tooltip,
+body.share-fg-light .download-prompt,
+body.share-fg-light .sent,
+body.share-fg-light .home-subtitle,
+body.share-fg-light .web-push-title,
+body.share-fg-light .web-push-body,
+body.share-fg-light .another,
+body.share-fg-light .tos,
+body.share-fg-light .privacy,
+body.share-fg-light .web-push-or {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+/* Text on the background — the card's own contents are unaffected. */
+body.share-fg-dark .anonymous-tooltip,
+body.share-fg-dark .download-prompt,
+body.share-fg-dark .sent,
+body.share-fg-dark .home-subtitle,
+body.share-fg-dark .web-push-title,
+body.share-fg-dark .another {
+    color: #000;
+}
+
+body.share-fg-dark .web-push-body {
+    color: rgba(0, 0, 0, 0.82);
+}
+
+body.share-fg-dark .tos,
+body.share-fg-dark .privacy,
+body.share-fg-dark .web-push-or {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+body.share-fg-dark .another {
+    border-bottom-color: #000;
+}
+
+body.share-fg-dark .web-push-cta-ghost {
+    border-color: rgba(0, 0, 0, 0.25);
+}
+
+body.share-fg-dark .web-push-cta.web-push-cta-ghost::after {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+body.share-fg-dark .web-push-avatar {
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+/* sent.png and left.png are solid-white monochrome glyphs, invisible on the
+ * light artwork. They carry no colour, so inverting is exact rather than a
+ * tint approximation. Deliberately excludes .web-push-bubble (chat_bubble.png
+ * has dark text inside — inverting would break it) and .web-push-avatar (the
+ * sender's photo). */
+body.share-fg-dark #sent-check,
+body.share-fg-dark .navbar img {
+    filter: invert(1);
+}
+
+/* NOT in the design spec — see docs/share-style-assets.md.
+ * The default CTA is black, which the design only ever showed on the pink
+ * gradient. On the dark artwork it disappears: contrast against the artwork's
+ * average colour is 1.34:1 on cloister_black and 2.32:1 on
+ * zilla_slab_highlight (white reaches 15.65:1 and 9.07:1). This is the
+ * conversion button, so it flips to the existing .button-white treatment
+ * rather than shipping an invisible CTA. Revert this one block if design
+ * prefers otherwise. */
+body.share-fg-light .submit,
+body.share-fg-light .download-link,
+body.share-fg-light .web-push-cta:not(.web-push-cta-ghost) {
+    background-color: #fff;
+    color: #000;
+}
+
+body.share-fg-light .submit:disabled::after {
+    border-top-color: #000;
+}
+
+.tos-privacy {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.tos {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgb(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+
+.privacy {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgb(255, 255, 255, 0.5);
+}
+
+.apple-pay {
+    /* margin-top: 30px; */
+    height: 54px;
+    width: 100%;
+    background: black;
+    border-radius: 50px;
+    overflow: hidden;
+    transform: translateZ(0px);
+}
+
+.space1 {
+    height: 8px;
+    width: 8px;
+}
+
+.space2 {
+    height: 16px;
+    width: 16px;
+}
+
+.space25 {
+    height: 20px;
+    width: 20px;
+}
+
+.space3 {
+    height: 24px;
+    width: 24px;
+}
+
+.space4 {
+    height: 32px;
+    width: 32px;
+}
+
+.space5 {
+    height: 40px;
+    width: 40px;
+}
+
+/* Animating placeholder CSS */
+.textarea-placeholder {
+    position: absolute;
+    top: 16px;
+    left: 24px;
+    font-size: 20px;
+    font-weight: 600;
+    color: rgba(0,0,0,0.25);
+    pointer-events: none;
+    opacity: 0;
+}
+
+.textarea-placeholder.hidden {
+    display: none;
+}
+
+.fade-in {
+    animation: fade-in 0.3s ease forwards;
+}
+
+.fade-out {
+    animation: fade-out 0.3s ease forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* ===== Web Push Inline Flow ===== */
+.web-push-avatar-wrap {
+  position: relative;
+  width: 15vh;
+  height: 15vh;
+  margin: 0 auto 20px;
+}
+.web-push-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  object-fit: cover;
+}
+.web-push-bubble {
+  position: absolute;
+  width: 130px;
+  left: 55px;
+  top: 50px;
+  opacity: 0;
+  transform: translateY(-100%) scale(0);
+  transform-origin: bottom left;
+}
+.web-push-bubble.bubble-animate {
+  animation: bubble-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
+}
+@keyframes bubble-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-100%) scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-100%) scale(1);
+  }
+}
+.web-push-title {
+  color: #fff;
+  font-size: min(8vw, 30px);
+  font-weight: 800;
+  text-align: center;
+  margin: 0;
+}
+.web-push-body {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: min(7.2vw, 27px);
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
+  margin: 0 0 28px;
+}
+.web-push-body strong {
+  color: #FF8D10;
+}
+.web-push-cta {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 50px;
+  background: #111;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 0;
+  position: relative;
+  overflow: hidden;
+}
+.web-push-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  background: rgba(255, 255, 255, 0.15);
+}
+.web-push-cta.web-push-loading::after {
+  animation: web-push-progress var(--progress-duration, 7s) linear forwards;
+}
+@keyframes web-push-progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+.web-push-or {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.web-push-cta-ghost {
+  background: transparent;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  opacity: 0.6;
+}
+.web-push-cta.web-push-cta-ghost::after {
+  background: rgba(255, 255, 255, 0.25);
+}
+/* NGL-901: the Rokt container is always in the flow and collapses to nothing while
+   it is empty, which is what makes a no-fill need no special casing. The class is
+   added only once a placement rendered, so the spacing never shows around nothing. */
+#rokt-slot {
+  width: 100%;
+}
+#rokt-slot.rokt-slot-filled {
+  margin-top: 16px;
+}
+
+/* NGL-901: an overlay rather than a fill of its own, so it works over both the
+   `html` gradient and the artwork a share-styled page puts there instead. */
+#sent-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+}
+#sent-banner .sent-banner-check {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  background: url(/images/sent-check-small.svg) center / 24px 24px no-repeat;
+}
+#sent-banner .sent-banner-text {
+  color: #fff;
+  font-size: min(6.4vw, 24px);
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* The rule belongs to the marked words, not to the block `.another` draws it on.
+   150% line-height per Iryna, 2026-09-02 — `.another` sets a size but no
+   line-height, so this text was inheriting `normal` (~1.2). */
+#rokt-install-link {
+  border-bottom: 0;
+  line-height: 1.5;
+}
+#rokt-install-link .free-hint-cta-link {
+  border-bottom: 2px solid #fff;
+}
+
+/* NGL-901: arm-only spacing, to the mockup's rhythm at its own 375px width — 16px
+   from the headline to the CTA, 24px from the CTA to the ad card. Scoped to
+   `.free-hint` so the control page's spacing does not move. */
+#sent-standard-flow.free-hint .web-push-title {
+  /* `balance` breaks the headline as "You've unlocked / a free hint!" the way the
+     mockup does, without baking a <br> into a translated string. */
+  text-wrap: balance;
+  margin-bottom: 16px;
+}
+#sent-standard-flow.free-hint #rokt-slot.rokt-slot-filled {
+  margin-top: 24px;
+}
+
+/* The free-hint disclaimer. Quiet on purpose — it qualifies the headline without
+   competing with the ad above it or the install link. */
+.free-hint-footer {
+  margin: 16px 0 0;
+  font-size: 12px;
+  line-height: 16px;
+  color: rgba(255, 255, 255, 0.5);
+}
+/* Same reason as .submit-subtext: a share style with dark text turns 50% white invisible. */
+body.share-fg-light .free-hint-footer {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+
+/* NGL-901: the Send button gains a second line. `.button, .submit` is already a
+   centred flex row, so only the axis changes — and only on the two-line button,
+   since `.submit` also renders single-line for every page owner outside the Rokt
+   arm, and `.button` is shared with the download CTAs. Sizes are the mockup's:
+   18px/700 over 13px at 50% white, line boxes 20 and 17 with no gap between them. */
+.submit-two-line {
+  flex-direction: column;
+}
+.submit-label {
+  line-height: 20px;
+}
+.submit-subtext {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 17px;
+  color: rgba(255, 255, 255, 0.5);
+}
+/* A share style that wants dark text flips the button to white, where 50% white
+   would be invisible. */
+body.share-fg-light .submit-subtext {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* NGL-929 — Super Send offer and confirmation screens.
+ *
+ * The offer screen is laid out in the design's own 375x651 coordinate space: `--bu` is one
+ * design pixel, so every number below is the Figma value verbatim and can be diffed against
+ * the spec. Reworking each offset into percentages would make that check impossible.
+ *
+ * `--bu` is bound by whichever axis runs out first. Height is not decorative here — the
+ * screen is 651 tall and the X in-app sheet is ~533 (NGL-908), so scaling on width alone
+ * would push the CTA off the bottom. That two-axis min() is why this section has no media
+ * queries: it covers every viewport tier NGL-908 enumerated by construction.
+ *
+ * A length rather than a transform: scale() needs a unitless number, which CSS cannot derive
+ * from the viewport, and scaling a rasterised layer would soften the text.
+ */
+#sent-boost-offer {
+    --bu: min(100vw / 375, 100vh / 651);
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    /* The gradient the artwork is already painted on. Not a re-declaration of the
+     * background — it fills the letterbox on a viewport whose ratio is not 375:651, so the
+     * edge reads as more artwork instead of a seam against the page's own gradient. */
+    background: linear-gradient(-11.06deg, #F8F3F5 52.4%, #FF295F 74.8%);
+}
+
+/* Iryna's desktop bg (Figma `Desktop - 2`, node 31538:157332) fills the letterbox the
+ * centred 375-unit stage leaves. The ratio query is exactly when that letterbox exists,
+ * which a width breakpoint only approximates. background-color survives a 404. */
+@media (min-aspect-ratio: 375 / 651) {
+    #sent-boost-offer {
+        background-color: #f7eaf1;
+        background-image: url('/images/super-send/super-send-offer-desktop.webp');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+/* dvh where it exists: the in-app browsers that send most of this traffic resize their
+ * chrome on scroll, and vh would leave the CTA under it. */
+@supports (height: 100dvh) {
+    #sent-boost-offer {
+        --bu: min(100vw / 375, 100dvh / 651);
+        height: 100dvh;
+    }
+}
+
+/* Desktop, per Iryna's `Desktop - 1` (Figma 31536:157240, 1440x1024). Measured off that
+ * frame, the column there is the same 375-unit column as mobile at 1:1 — CTA 327.5x56,
+ * avatar 163.635 — so this is not a wider layout. It is the mobile column stopped from
+ * scaling up, over artwork that now fills the window. What read as "a screenshot of a mobile
+ * UI on desktop" was `--bu` growing the stage to 590px on a 1440x1024 screen while the mobile
+ * artwork painted as a strip over the desktop background.
+ *
+ * `--bu` becomes the scale the cover background already resolves to — max(), not min(), since
+ * that is what cover takes — and every offset is measured from the viewport centre, which is
+ * cover's own anchor. That is what keeps the DOM avatar inside the bubble baked into the
+ * artwork at any window size; a fixed 375 column drifts about 51px from the art at 1920 wide.
+ * The cost is that content zooms past 1440 (500 wide at 1920) rather than holding 375 — it
+ * zooms with the artwork, so the proportions stay the ones in the frame.
+ *
+ * Same condition as the success <source> in sent.pug, and the 700px floor is load-bearing: on
+ * ratio alone the X in-app sheet (402x533, NGL-908) matches and would scale the column to 195.
+ */
+@media (min-width: 700px) and (min-aspect-ratio: 375 / 651) {
+    #sent-boost-offer {
+        --bud: max(100vw / 1440, 100vh / 1024);
+        --bu: var(--bud);
+    }
+
+    /* Placed off the viewport centre instead of laid out by the flex parent, which only
+     * centres horizontally — the column's 147 top in a 1024-unit frame is not a centre. Height
+     * stays the mobile 651 rather than the frame's 646.67 so the internal rhythm (.boost-text
+     * anchors to bottom: 27) is identical to mobile and only the stage moves. */
+    #sent-boost-offer .boost-stage {
+        position: absolute;
+        left: calc(50vw + (527.5 - 720) * var(--bud));
+        top: calc(50vh + (147 - 512) * var(--bud));
+        width: calc(375.5 * var(--bud));
+        height: calc(651 * var(--bud));
+        background: none;
+    }
+
+    /* The artwork is the background here, and the mobile file is the strip Kiran saw. */
+    #sent-boost-offer .boost-bg {
+        display: none;
+    }
+
+    /* Baked into super-send-offer-desktop.webp — `Desktop - 2` carries it as a layer, unlike
+     * the mobile artwork where the DOM has to supply it. */
+    #sent-boost-offer .boost-heart {
+        display: none;
+    }
+
+    /* Spans the window, and belongs to the window's top edge rather than the artwork's: cover
+     * crops the art vertically on anything wider than 1440:1024, so a bar placed in art space
+     * would sit above the top of the screen. Not clipped by the wrapper's overflow because
+     * nothing between here and the viewport creates a containing block. */
+    #sent-boost-offer .boost-header {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: calc(60 * var(--bud));
+    }
+
+    /* The avatar frame is deliberately NOT moved here: Iryna's desktop frame renders it at
+     * 166.5, which is the mobile 167.05. The node metadata says 212.036 and is wrong — pushed
+     * down there, the lockup crosses the middle of the card instead of its bottom edge and the
+     * card runs into the headline. Measured off the render, not the node boxes. */
+}
+
+/* dvh for the same reason as above, and it has to be the same unit the background box uses or
+ * the cover scale and the offsets stop agreeing. */
+@supports (height: 100dvh) {
+    @media (min-width: 700px) and (min-aspect-ratio: 375 / 651) {
+        #sent-boost-offer {
+            --bud: max(100vw / 1440, 100dvh / 1024);
+        }
+
+        #sent-boost-offer .boost-stage {
+            top: calc(50dvh + (147 - 512) * var(--bud));
+        }
+    }
+}
+
+/* Full viewport height, not the design's 651 units. `--bu` is bound by min(), so on any
+ * viewport taller than 375:651 — which is every modern phone — the artwork stops short and
+ * the remainder used to show the wrapper's flat gradient as a blank band. On an iPhone XR
+ * (414x896) that was 177px of it.
+ *
+ * The background continues instead: the artwork's last row is uniform to within 1/10/8 per
+ * channel across its full width, so painting the stage that exact colour extends it with no
+ * visible seam and without scaling or cropping the art.
+ *
+ * The text column is anchored to the stage's bottom, so this also puts the terms row at the
+ * bottom of the viewport, keeping its gap. */
+.boost-stage {
+    position: relative;
+    width: calc(375 * var(--bu));
+    height: 100%;
+    flex: none;
+    background: #f7eaf1;
+}
+
+/* The whole static artwork in one file: background gradient, top clouds, the four chat
+ * bubbles, 👀 / 😘, and the color-dodge cloud plate the text sits on — flattened by
+ * wip/ngl-929-build-assets.js. Opaque, so it ships as webp rather than png: 62KB against
+ * 2.1MB for the three PNG layers it replaces. */
+/* Sangra até as bordas da janela, não até as do palco. Num viewport mais baixo que a razão
+ * 375:651 o `--bu` passa a vir da altura e o palco fica mais estreito que a tela — 4px de cada
+ * lado no iPhone do Shakeel, 28 num iPhone SE — e o que aparecia na fresta era o gradiente do
+ * <html>, lido como a tela cortada nas pontas. O deslocamento negativo é a diferença entre o
+ * palco e a janela: a arte continua centrada, só deixa de terminar antes da borda.
+ *
+ * Só a arte se espalha; a coluna de conteúdo continua em unidades de design. É o mesmo arranjo
+ * que o tier de desktop já usa, com a arte no fundo e a coluna por cima em escala própria. */
+.boost-bg {
+    position: absolute;
+    left: calc((375 * var(--bu) - 100vw) / 2);
+    top: 0;
+    width: 100vw;
+    /* Fills the stage rather than stopping at the design's 651 units, so the extra height on
+     * a viewport taller than 375:651 is the artwork's own cloud plate instead of a flat band.
+     *
+     * cover, so the aspect is never distorted. The two ends behave differently and both are
+     * wanted: where the viewport is short, `--bu` is height-driven and the stage already has
+     * the design's 375:651 aspect, so cover is an exact fit and crops nothing. Where it is
+     * tall — every modern phone — the stage is taller than the design and cover scales up and
+     * trims the sides, which the artwork is built for: the bubbles already bleed off both
+     * edges in the mockup. On an iPhone XR that is ~37 design px a side.
+     *
+     * object-position keeps the top edge pinned, so the header bar and the upper bubbles never
+     * shift; the trim comes off the horizontal, centred. */
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
+/* Mesma sangria da arte, pelo mesmo motivo: a barra branca terminava antes da borda e a
+ * fresta do gradiente aparecia ao lado dela. O tier de desktop redeclara left e width. */
+.boost-header {
+    position: absolute;
+    left: calc((375 * var(--bu) - 100vw) / 2);
+    top: 0;
+    width: 100vw;
+    height: calc(60 * var(--bu));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(12 * var(--bu));
+    background: #fff;
+}
+
+.boost-header-check {
+    width: calc(24 * var(--bu));
+    height: calc(24 * var(--bu));
+    flex: none;
+}
+
+.boost-header-text {
+    font-size: calc(24 * var(--bu));
+    line-height: calc(28 * var(--bu));
+    font-weight: 600;
+    color: #000;
+}
+
+/* A text glyph, not an image. An isolated emoji text node exports as transparent pixels, and
+ * the CTA copy carries emoji anyway because it is translated — so one rule, not two. Renders
+ * as Apple emoji on iOS, which is nearly all of this traffic. */
+.boost-heart {
+    position: absolute;
+    left: calc(325.35 * var(--bu));
+    top: calc(234.98 * var(--bu));
+    width: calc(77.8 * var(--bu));
+    height: calc(85.06 * var(--bu));
+    font-size: calc(48 * var(--bu));
+    line-height: 1.3;
+    transform: rotate(17.51deg);
+}
+
+/* The frame is the rotated box's bounding square (125.938 at 21.75deg measures 163.635), so
+ * centring the image inside it puts the avatar where the design has it without hand-solving
+ * the offset. */
+.boost-avatar-frame {
+    position: absolute;
+    left: calc(110.55 * var(--bu));
+    top: calc(167.05 * var(--bu));
+    width: calc(163.635 * var(--bu));
+    height: calc(163.635 * var(--bu));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boost-avatar {
+    width: calc(125.938 * var(--bu));
+    height: calc(125.938 * var(--bu));
+    /* content-box, not border-box: in Figma the stroke sits *outside* the picture, so the
+     * 125.938 is the picture and the ring adds 6 a side. Measured on both frames — the
+     * design's picture starts exactly where our ring used to start, which cost 12 units of
+     * picture and made the card read smaller than the frame. */
+    box-sizing: content-box;
+    border-radius: calc(30 * var(--bu));
+    /* Iryna's spec verbatim: 6px, #FFF, 20% alpha. */
+    border: calc(6 * var(--bu)) solid rgba(255, 255, 255, 0.2);
+    object-fit: cover;
+    transform: rotate(-21.75deg);
+    /* Placeholder tint behind the picture only. Left under the border it would sit beneath the
+     * ring as well and brighten it past the 20% the design asks for. */
+    background: rgba(255, 255, 255, 0.2);
+    background-clip: content-box;
+}
+
+/* Overlaps the avatar on purpose. */
+.boost-lockup {
+    position: absolute;
+    left: calc(109 * var(--bu));
+    top: calc(280 * var(--bu));
+    display: flex;
+    align-items: center;
+}
+
+/* Ships as an asset rather than text because the wordmark is outlined italic ES Rebond
+ * Grotesque, which is not loaded on web, and it is not translated. SVG rather than the PNG
+ * the plan called for: the PNG export came back with an opaque white backing, which painted
+ * a rectangle over the avatar the lockup deliberately overlaps.
+ *
+ * The white glow is here rather than in the file. Iryna asked for a higher-resolution reupload
+ * because the wordmark looks blurry, but the file is pure vector — what was soft was the SVG's
+ * own drop-shadow filter, declared filterUnits="userSpaceOnUse", so the browser rasterised it
+ * in the file's 157-unit space and then scaled that bitmap with the layout. A CSS filter is
+ * applied after layout, so it is drawn at whatever size the element ends up.
+ *
+ * Same shadow, converted: the filter was feGaussianBlur stdDeviation="2", white, no offset, and
+ * CSS reads a shadow's radius as twice the deviation — 4 SVG units, which at 152/157 is 3.873
+ * design units. The src carries ?v=2 because the file itself changed and images are not
+ * versioned by the layout the way the stylesheet is. */
+.boost-wordmark {
+    width: calc(152 * var(--bu));
+    height: auto;
+    flex: none;
+    filter: drop-shadow(0 0 calc(3.873 * var(--bu)) #fff);
+}
+
+.boost-rocket {
+    width: calc(72 * var(--bu));
+    font-size: calc(56 * var(--bu));
+    line-height: 1;
+    text-align: center;
+    flex: none;
+}
+
+/* Spans the design's top:360 down to bottom:27, so the copy and the CTA stay under the
+ * lockup where the design puts them and only the terms row follows the viewport's bottom.
+ * On a viewport taller than 375:651 the slack lands between the CTA and the terms row
+ * (.boost-cta-block grows into it); anchoring the whole column to the bottom instead pushed
+ * the headline down against the terms and left the cloud plate empty.
+ *
+ * justify-content is flex-end for the case where the copy is taller than the box: the auto
+ * margin on .boost-terms eats free space first, so it only takes effect when there is none,
+ * and then the overflow goes up into the cloud plate rather than pushing the CTA off screen.
+ * The copy can be taller for three reasons the design does not cover: NGL allows 30-char
+ * usernames (3 lines), the count can be 4 digits, and every non-English translation of the
+ * body is longer. See the note on .boost-copy about the horizontal half of the same
+ * problem. */
+.boost-text {
+    position: absolute;
+    left: calc(23.5 * var(--bu));
+    right: calc(24.5 * var(--bu));
+    top: calc(360 * var(--bu));
+    bottom: calc(27 * var(--bu));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: calc(24 * var(--bu));
+    text-align: center;
+}
+
+/* The spec gives the column a 24 gap and the body a 16 offset from the headline. Those are
+ * two different gaps, so the pair is its own group at 16 and the group sits 24 from the CTA.
+ *
+ * word-break and the children's width:100% are both load-bearing, not defaults copied over.
+ * The headline interpolates a username, NGL allows 30 characters, and one unbroken 30-char
+ * token measures 542px at 32px against a 327px column. Without them the h2 is sized to its
+ * content as a flex item and the stage's overflow:hidden clips the name silently — the page
+ * does not even scroll to hint at it. */
+.boost-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(16 * var(--bu));
+    width: 100%;
+    word-break: break-word;
+}
+
+/* O clamp é a garantia dura contra o que o Shakeel viu: o bloco de texto é ancorado embaixo,
+ * então cada linha a mais da headline sobe por cima do lockup "Boost". Duas linhas a 32 ocupam
+ * 80 unidades e o vão até o lockup é ~103, então 2 é o teto aqui e 3 no tier compacto (97,5).
+ * Quem escolhe o tier é o servidor (superSendView.resolveHeadlineClass) por estimativa de
+ * largura; o clamp existe porque a estimativa não conhece a fonte do device — se ela errar, o
+ * custo é reticência, nunca colisão. */
+.boost-headline {
+    margin: 0;
+    width: 100%;
+    min-width: 0;
+    font-size: calc(32 * var(--bu));
+    line-height: 1.25;
+    font-weight: 700;
+    color: #000;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+/* Username longo. 26 é o maior passo em que três linhas (97,5u) ainda cabem no vão de 103u —
+ * medido, não escolhido: a 28 são 105u e encosta. */
+.boost-headline-compact {
+    font-size: calc(26 * var(--bu));
+    -webkit-line-clamp: 3;
+}
+
+/* Empty until main.js fills it — it interpolates the username and the unread count, and
+ * neither can be rendered server-side on a CDN-cached page. Reserving the two lines the copy
+ * occupies keeps the CTA from jumping when it lands. */
+.boost-headline:empty {
+    min-height: calc(80 * var(--bu));
+}
+
+.boost-body {
+    margin: 0;
+    width: 100%;
+    min-width: 0;
+    font-size: calc(16 * var(--bu));
+    line-height: calc(24 * var(--bu));
+    font-weight: 600;
+    color: #000;
+}
+
+/* Takes the column's spare height so the CTA stays with the copy and the terms row is the
+ * only thing that moves to the bottom. At the design's 375:651 there is none to take, so
+ * the block measures exactly what the spec gives it. */
+.boost-cta-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(24 * var(--bu));
+    width: 100%;
+    flex: 1 1 auto;
+}
+
+.boost-cta {
+    width: 100%;
+    height: calc(56 * var(--bu));
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: calc(7 * var(--bu));
+    padding: calc(2 * var(--bu)) 0 0;
+    border-radius: calc(50 * var(--bu));
+    border: calc(4 * var(--bu)) solid #ff8500;
+    background: linear-gradient(-75.14deg, #ff8500 0%, #ff0089 100%);
+    font-family: inherit;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Iryna's ask: the CTA carries an outside stroke in the ngl gradient at 10% alpha. Outside, so
+ * it grows past the button instead of eating into the 56-unit box the design gives it.
+ *
+ * A masked pseudo-element rather than a border, for two reasons: border takes no gradient, and
+ * the padding-box/border-box background trick would have to restate .boost-cta's own gradient —
+ * the declaration #421 already found is easy to override by accident. The mask keeps only the
+ * band, by compositing the content box out of the whole box.
+ *
+ * The width echoes the button's own 4-unit stroke. Iryna gave the colour and the alpha, not the
+ * width. The gradient is the page's own (the body rule at the top of this file), not the
+ * button's warmer one.
+ *
+ * Behind @supports so a browser without mask compositing gets no ring at all rather than a flat
+ * 10% wash over the button's gradient. The -webkit- half carries iOS, which is nearly all of
+ * this traffic. */
+.boost-cta {
+    position: relative;
+}
+
+@supports ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+    .boost-cta::after {
+        content: '';
+        position: absolute;
+        /* -8, not -4: an absolutely positioned box is placed against its parent's *padding*
+         * box, so -4 would land the band exactly on the button's own 4-unit border. -8 clears
+         * the border and puts the band in the 4 units immediately outside it. */
+        inset: calc(-8 * var(--bu));
+        border-radius: calc(54 * var(--bu));
+        padding: calc(4 * var(--bu));
+        background: linear-gradient(to bottom right, #ec1187 0%, #ff8d10 100%);
+        opacity: 0.1;
+        -webkit-mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+        mask-composite: exclude;
+        /* The ring overflows the button; keeping it out of hit testing means the tap target
+         * stays the 56-unit box the design sizes. */
+        pointer-events: none;
+    }
+}
+
+/* Visual half of the double-tap guard in main.js. #421 used .button-translucent, which sets
+ * a background and so is overridden by .boost-cta's gradient below it — the guard would have
+ * held but shown nothing, on a button that takes money. */
+.boost-cta:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.boost-cta-title {
+    font-size: calc(18 * var(--bu));
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+}
+
+.boost-cta-price {
+    font-size: calc(13 * var(--bu));
+    font-weight: 400;
+    color: #e9e9e9;
+    line-height: 1;
+}
+
+.boost-terms {
+    display: flex;
+    justify-content: center;
+    gap: calc(16 * var(--bu));
+    /* Eats the column's spare height, which is what keeps this at the bottom of the viewport
+     * while the CTA stays 24 under the body. Zero when there is no spare height. */
+    margin-top: auto;
+}
+
+.boost-terms-link {
+    font-size: calc(14 * var(--bu));
+    font-weight: 400;
+    color: #000;
+    opacity: 0.8;
+    text-decoration: none;
+}
+
+/* Confirmation screen. Sits inside .container, so the horizontal inset is already the
+ * page's; the design's own 24 padding would double it. .button and .another are reused
+ * as-is — both already match the design's black pill and underlined white link.
+ *
+ * 82 is the design's own offset: the content column is at top:169 in a frame whose page area
+ * starts at y=87. main.js hides every other child of .container on this screen, so without
+ * it the rocket sits against the top edge. */
+/* Design units, same two-axis formula the offer uses, so the confirmation shrinks on a short
+ * viewport (the X in-app sheet is ~533 tall, NGL-908) instead of pushing the CTA off the
+ * bottom. Capped at 1 unlike the offer: that screen deliberately grows with its full-bleed
+ * artwork on desktop, whereas this one is a centred column and Iryna's frame only specifies
+ * mobile — uncapped it would render half again as large on a 1440. */
+#sent-boost-success {
+    --bu: min(100vw / 375, 100vh / 651, 1px);
+    padding-top: calc(44.18 * var(--bu));
+}
+
+/* The paid return leg. sent.pug puts this class on .container when the server resolves the load
+ * to the confirmation screen, so the standard screen never reaches a frame — script cannot do
+ * this, because the browser paints while the body is still parsing.
+ *
+ * Hidden by exclusion rather than by naming each sibling: that takes the spacers with it, and
+ * means anything added to the page later cannot leak onto the confirmation. Same rule
+ * showBoostSuccess applies in main.js for the client-side path. */
+.container.boost-success-only > *:not(#sent-boost-success) {
+    display: none;
+}
+
+/* The cloud band at the top of the design. Full-bleed and pinned to the page, not to
+ * .container, which is 85% wide. color-dodge is the blend mode this same photo layer carries
+ * on the offer screen; here it cannot be flattened into the backdrop because the backdrop is
+ * the page's CSS gradient, so it blends at runtime. */
+.boost-success-clouds {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: auto;
+    mix-blend-mode: color-dodge;
+    pointer-events: none;
+}
+
+/* Iryna's desktop success bg (Figma node 31581:160375, 2026-09-04): three clouds tiled
+ * across 1440 instead of one stretched. It bakes the gradient in, so it stands in for the
+ * page background and the color-dodge overlay goes with it.
+ *
+ * cover still scales the band with viewport width, and the copy below sits at fixed offsets,
+ * so past ~1700 the band reached the title again. object-position cancels that by lifting the
+ * crop by the same amount the band grew — 300px is the band's depth in the 1440-wide asset.
+ * min() keeps it at 0 when cover is height-driven instead (768x1024), where lifting would
+ * push the band *down* onto the title. */
+@media (min-width: 700px) and (min-aspect-ratio: 375 / 651) {
+    .boost-success-clouds {
+        height: 100vh;
+        object-fit: cover;
+        object-position: center min(0px, 300px - 100vw * 300 / 1440);
+        mix-blend-mode: normal;
+    }
+}
+
+/* The cloud is absolutely positioned, and positioned elements paint in a later layer than
+ * in-flow content, so it landed on top of the rocket and color-dodged it pale. Putting the
+ * column in the positioned layer too restores DOM order between them. Deliberately without
+ * z-index: a stacking context on the parent would give the cloud a transparent backdrop and
+ * kill the blend. */
+.boost-success-art,
+.boost-success-title,
+.boost-success-cta,
+.boost-success-another {
+    position: relative;
+}
+
+/* Iryna's success screen (Figma 31613:161313): the creator's picture in the same rotated frame
+ * the offer uses, with the envelope hung over its lower half.
+ *
+ * The box stops at 199.635 — where the title begins — rather than at the avatar's own 210.295,
+ * so the title needs no negative margin. The avatar's bottom corner overflows it by design. */
+.boost-success-art {
+    width: calc(163.635 * var(--bu));
+    height: calc(199.635 * var(--bu));
+    margin: 0 auto;
+}
+
+/* The offer's frame, reused whole: the same 125.938 picture tilted -21.75deg, centred in its
+ * own 163.635 bounding box. Only where that box sits is this screen's business, and it sits at
+ * the top of the art block.
+ *
+ * The node metadata puts the box at 46.659 and is wrong, the same way it was wrong about the
+ * offer's desktop frame. Off Iryna's render the card's visible top lands at ~9 art units,
+ * which is what a box at 0 produces: 0 + 81.82 (sharp half) - 72.85 (rounded half).
+ *
+ * height is that box, not 100%: the art block is 199.635 tall because it stops where the title
+ * begins, so centring in it would drop the card 18 units. */
+#sent-boost-success .boost-avatar-frame {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: calc(163.635 * var(--bu));
+}
+
+/* 40% here against the offer's 20% — the two frames carry different alphas in Figma. Nothing
+ * else differs: same size, same tilt. */
+#sent-boost-success .boost-avatar {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Last child in the design, so it paints over the avatar. Centred on the artwork rather than on
+ * the column: the design has it 1px left of centre, which is the frame's own asymmetry. */
+.boost-success-envelope {
+    position: absolute;
+    left: calc(30.82 * var(--bu));
+    top: calc(97.82 * var(--bu));
+    width: calc(100 * var(--bu));
+    height: calc(100 * var(--bu));
+}
+
+.boost-success-title {
+    margin: 0;
+    font-size: calc(32 * var(--bu));
+    line-height: 1.25;
+    font-weight: 700;
+    color: #fff;
+}
+
+.boost-success-cta {
+    margin-top: 32px;
+}
+
+.boost-success-another {
+    margin-top: 24px;
+}
+
+/* F9 — entrance animation. Kiran asked for the content to fade in and the button to move, and
+ * said explicitly it did not need design.
+ *
+ * CSS animations rather than anything driven from main.js, so they start at the first paint of
+ * a server-rendered screen. Driving them from script would put a frame of the final state on
+ * screen before the animation began, which is the flicker the server-side render just removed.
+ *
+ * `both` holds the from-state through the delay, which is what staggers them. No rule here sets
+ * opacity outside a keyframe, so a browser that ignores all of this still shows the screen.
+ *
+ * Under prefers-reduced-motion the whole block is absent, not overridden: nothing to undo, and
+ * the settled layout is byte-identical to what shipped before this. */
+@media (prefers-reduced-motion: no-preference) {
+    @keyframes boost-rise {
+        from {
+            opacity: 0;
+            transform: translateY(calc(12 * var(--bu)));
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    /* Fade only, for the two elements whose transform is load-bearing: the heart is rotated
+     * 17.51deg and the avatar -21.75deg, and an animated transform would drop the rotation. */
+    @keyframes boost-fade {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* The button's own gesture, once the stagger above has finished: a small pop and then a
+     * shake. One keyframe rather than two animations because both would animate `transform` on
+     * the same element, where the last declared simply wins for the overlap — sequencing them
+     * by delay would mean six seconds of a moving CTA instead of one gesture.
+     *
+     * The still stretch from 28% to the end is the rest between repeats, so the timing lives in
+     * one place: at 2.8s the shake itself takes ~0.78s and the button then sits for two. It
+     * runs twice and stops. A loop on the screen's only CTA reads as a nag, and it would still
+     * be moving while the sender is reading their card details on the next page.
+     *
+     * The travel is in design units like everything else here, so the shake keeps its
+     * proportion when --bu scales the button on desktop. */
+    @keyframes boost-cta-shake {
+        0% {
+            transform: none;
+        }
+        4% {
+            transform: scale(1.04);
+        }
+        8% {
+            transform: scale(1.02) translateX(calc(-5 * var(--bu))) rotate(-1.4deg);
+        }
+        12% {
+            transform: scale(1.02) translateX(calc(5 * var(--bu))) rotate(1.4deg);
+        }
+        16% {
+            transform: scale(1.01) translateX(calc(-3.5 * var(--bu))) rotate(-0.9deg);
+        }
+        20% {
+            transform: scale(1.01) translateX(calc(3.5 * var(--bu))) rotate(0.9deg);
+        }
+        24% {
+            transform: translateX(calc(-1.5 * var(--bu))) rotate(-0.4deg);
+        }
+        28%,
+        100% {
+            transform: none;
+        }
+    }
+
+    #sent-boost-offer .boost-avatar-frame {
+        animation: boost-rise 0.45s ease-out both;
+    }
+
+    #sent-boost-offer .boost-heart {
+        animation: boost-fade 0.45s ease-out 0.1s both;
+    }
+
+    #sent-boost-offer .boost-lockup {
+        animation: boost-rise 0.45s ease-out 0.08s both;
+    }
+
+    #sent-boost-offer .boost-copy {
+        animation: boost-rise 0.45s ease-out 0.16s both;
+    }
+
+    #sent-boost-offer .boost-cta-block {
+        animation: boost-rise 0.45s ease-out 0.24s both;
+    }
+
+    /* Nested inside .boost-cta-block's own animation on purpose: the block places it, this
+     * moves it. The 0.9s delay clears the stagger, which ends at 0.24 + 0.45. */
+    #sent-boost-offer .boost-cta {
+        animation: boost-cta-shake 2.8s ease-in-out 0.9s 2;
+    }
+
+    #sent-boost-success .boost-success-art {
+        animation: boost-rise 0.45s ease-out both;
+    }
+
+    #sent-boost-success .boost-success-title {
+        animation: boost-rise 0.45s ease-out 0.1s both;
+    }
+
+    #sent-boost-success .boost-success-cta {
+        animation: boost-rise 0.45s ease-out 0.2s both;
+    }
+
+    #sent-boost-success .boost-success-another {
+        animation: boost-rise 0.45s ease-out 0.28s both;
+    }
+}
+
+/* NGL-941 — the /join/:username school invite page.
+ *
+ * Same --bu design-unit convention as the NGL-929 block above: every offset is the Figma
+ * value verbatim (node 31829:36403, frame "About", 430x932) minus `--sb`, the mock's status bar
+ * (62 units) — the web viewport starts below it, so the design's own gap between status bar and
+ * first component is the gap from the top of the page here. `--bu` is bound by min() on mobile — whichever axis runs out first — so the 390-wide
+ * "Smaller screen" variant Iryna also shipped needs no rule of its own; it falls out of the
+ * same two-axis min() the 430 frame uses.
+ *
+ * Two deliberate simplifications against the Figma file, both because the file's shader-based
+ * background cannot ship to a production webview (WebGPU support is inconsistent, especially
+ * in the iOS in-app browsers most of this traffic comes through):
+ *
+ * - The background on mobile is `join-bg-full.webp`: the file's own "full bg" frame (node
+ *   32074:21955, its "Assets for download" section) exported whole, so the pixel-refraction
+ *   pass, the golden star, the violet star and both message stickers arrive baked in instead of
+ *   being composed here. It replaced `join-bg.webp` — the plain "bradient bg" gradient — after
+ *   Iryna flagged in review (18/Sep) that the pixelated effect was missing; it had only ever
+ *   shipped on the desktop asset. No per-layer export would have fixed that: the effect is a
+ *   shader that samples what is behind it, so the cloud layer exported alone comes out flat
+ *   opaque blue, nothing like what it composites to in the file. The composed frame is the
+ *   smallest honest unit, and it costs 35KB against the 96KB across five files it replaces.
+ *   It is `object-fit: cover` over the full viewport rather than clipped to the stage, so an
+ *   extreme aspect ratio letterboxes into more of the same gradient instead of a seam — and
+ *   below 475px that `cover` resolves to the same width/430 factor `--bu` does, top-aligned,
+ *   which is what keeps the baked-in art registered against the live text.
+ * - The body copy (name, badge, heading, subtext, CTA) is laid out as a flex column with
+ *   estimated gaps rather than each element pinned to its exact Figma y-offset. A translated
+ *   string or a long school name changes a gap's size, not another element's position — the
+ *   same trade the estimate+guarantee pairing above makes for the Super Send headline size.
+ *
+ * Font: shipped for pixel-perfect work against the file, but the web license for both families
+ * is still unconfirmed (only the Slack DM with the two .otf files, no license sign-off) — do not
+ * promote this page past the test cohort until that lands. VarsityTeam-Bold covers the "sticker"
+ * text (name, rank badge); ESRebondGrotesque-Extrabold covers the CTA only, matching the file's
+ * own per-element font map. Both ship as woff2, converted from the .otf Iryna sent.
+ */
+@font-face {
+    font-family: 'Varsity Team';
+    src: url('../fonts/VarsityTeam-Bold.woff2') format('woff2');
+    /* 700, not 800: this is the file's "Bold" weight (its own text styles say so, confirmed via
+     * the school name's copy-as-CSS), not an Extrabold. Only one weight ships, but a wrong
+     * declared weight still moves synthetic-bold heuristics in browsers with no matching face. */
+    font-weight: 700;
+    font-style: normal;
+    /* `block`, not `swap`: Safari reliably left a gray rectangle behind the school name over a
+     * real network fetch (reproduced in WebKit directly, not just Chromium) — `swap` paints the
+     * fallback system font immediately, complete with this element's own text-shadow, and
+     * WebKit's compositor doesn't always repaint that shadow layer once the real font swaps in.
+     * `block` skips the fallback paint instead of trying to invalidate it after the fact; the
+     * font is preloaded (see join.pug), so the invisible-text window is a couple of frames, not
+     * the spec's ~3s worst case. */
+    font-display: block;
+}
+@font-face {
+    font-family: 'ES Rebond Grotesque';
+    src: url('../fonts/ESRebondGrotesque-Extrabold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: block;
+}
+/* The page root, for this page only. `html` (top of this file) paints the NGL pink-to-orange
+ * gradient, which is right for ngl.link — that page *is* pink, so iOS Safari tinting its toolbars
+ * from the page's background colour reads as one surface. On /join the art is a yellow-to-purple
+ * gradient over white, so the same pink came back as a magenta band above and below the page
+ * (Iryna, 18/Sep review). Matching the art instead: the top edge carries the art's own top row as
+ * a horizontal gradient (measured off join-bg-full.webp: #E3DC33 left, #ABD1A0 middle, #8EB1EE
+ * right) and it fades into the art's own bottom row, #F7FCFE — a white with a trace of blue in it,
+ * not pure white, because that is what the asset actually ends on.
+ *
+ * `:has()` rather than a class on `html`: layout.pug emits the `html` tag for every view on the
+ * site and has no hook to vary it, and this must not leak to any other page. A browser without
+ * `:has()` falls back to the pink, which is exactly today's behaviour. */
+html:has(.join-page) {
+    background:
+        linear-gradient(to bottom, rgba(247, 252, 254, 0) 0%, #f7fcfe 55%),
+        linear-gradient(to right, #e3dc33 0%, #abd1a0 50%, #8eb1ee 100%) #f7fcfe;
+    background-repeat: no-repeat;
+}
+
+/* `overflow-y: auto`, not `hidden`: the CTA's height already grows for a school name long
+ * enough to wrap (see .join-cta), and a long enough *heading* translation could still push the
+ * stage taller than the viewport. Scrolling is the fallback that keeps the CTA reachable either
+ * way — `hidden` would silently swallow it below the fold, on the one element every visit here
+ * exists to reach. `.join-bg` is `position: fixed` (not `absolute`) so it keeps covering the
+ * viewport if the page scrolls, rather than ending at the original 100vh and leaving bare white
+ * space below it. */
+.join-page {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+@supports (height: 100dvh) {
+    .join-page {
+        height: 100dvh;
+    }
+}
+
+.join-bg {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    z-index: 0;
+}
+
+.join-stage {
+    --sb: 62;
+    --bu: min(100vw / 430, 100vh / (932 - var(--sb)));
+    position: relative;
+    z-index: 1;
+    width: calc(430 * var(--bu));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    /* Capped at the viewport (NGL-941, Brock's review 17/Sep): the 870-unit frame is taller than
+     * every real phone browser's *visible* viewport once its toolbars are showing — 813px at 402
+     * wide against ~743 in Safari, ~724 in Chrome iOS — so the page always had a scrollbar, over
+     * nothing. What sat in those last 114px was decoration and empty box: the CTA ends at 699 and
+     * the lowest real sticker at 662. Capping here lets the stage stop at the fold, and content
+     * taller than the viewport still scrolls, which is what `.join-page`'s `overflow-y: auto` is
+     * for.
+     *
+     * The layer that used to run the full 870 units (`.join-cloud`) is gone — it is baked into
+     * `join-bg-full.webp`, which is `position: fixed` and so cannot extend the scroll area at
+     * all. This cap stays as the guard for anything added in here later. */
+    min-height: min(calc((932 - var(--sb)) * var(--bu)), 100%);
+    /* This is where the badge sits in Figma (416), not where the name starts — the name is
+     * anchored separately, bottom-first, off of this same number (see .join-school-name-wrap).
+     * The previous value here (406) was the name's own top for the one specific short-name
+     * example measured, not a real anchor; it left the badge and everything below it 90-120px
+     * lower than the design at any other name length, including the common single-line case. */
+    padding-top: calc((416 - var(--sb)) * var(--bu));
+    padding-bottom: calc(40 * var(--bu));
+}
+@supports (height: 100dvh) {
+    .join-stage {
+        --bu: min(100vw / 430, 100dvh / (932 - var(--sb)));
+    }
+}
+
+/* Desktop, per the file's own "Desktop - 1" frame (1440x1024): the same 366-unit column,
+ * recentred over a wider background rather than redesigned. Sized off height alone (`H = 100vh
+ * / (1024-sb)`), not `max(100vw/1440, H)`: that `max()` only ever picked the width term when the
+ * viewport's aspect ratio was wider than the design's own 1440:963 (1.5:1) — true of most
+ * monitors, 16:9 is 1.78:1 — and picking it there scaled the whole column past the viewport's
+ * height, pushing the CTA below the fold with no visible scrollbar to hint at it (reported by
+ * Wilson on a large desktop screen, reproduces on a plain 1920x1080 window too). Below that
+ * ratio `max()` already resolved to H on its own, so dropping the width term changes nothing
+ * there — it only removes the branch that was overflowing. A first attempt swapped in `min()`
+ * instead, which also touches that unaffected branch: it shrinks any window squarer than 1.5:1
+ * (e.g. 900x900) that was already rendering correctly. `.join-bg`'s `object-fit: cover` still
+ * scales the background past the content on a wide screen and crops it — a mismatch against the
+ * art there, but a fully reachable CTA beats a correctly-scaled one that isn't. The 700px floor
+ * keeps the X in-app sheet (NGL-908, ~402x533) on the mobile tier, matching that ratio on width
+ * alone.
+ */
+@media (min-width: 700px) and (min-aspect-ratio: 430 / 932) {
+    .join-stage {
+        --sb: 61;
+        --bu: calc(100vh / (1024 - var(--sb)));
+    }
+
+}
+@supports (height: 100dvh) {
+    @media (min-width: 700px) and (min-aspect-ratio: 430 / 932) {
+        .join-stage {
+            --bu: calc(100dvh / (1024 - var(--sb)));
+        }
+    }
+}
+
+.join-logo {
+    position: absolute;
+    left: calc(36 * var(--bu));
+    top: calc((98 - var(--sb)) * var(--bu));
+    width: calc(86 * var(--bu));
+    height: auto;
+}
+
+/* iPhone SE (375x667) and other real phones under ~475 are squatter than the design's 430:870,
+ * so the fit-to-viewport min() on .join-stage (bound by height on these) shrinks the stage's
+ * width below the viewport's. That doesn't just expose raw gradient as side borders — every
+ * layer meant to bleed off the frame edge (the star, the two message stickers) stops short of
+ * the real screen edge instead, since they're positioned off the now-narrower stage box, not
+ * the viewport. That mismatch against the Figma "Smaller screen" reference (390x844) is worse
+ * than letting content run past the fold: below this width, size the stage off viewport width
+ * alone and let `.join-page`'s own `overflow-y: auto` take the extra height, same fallback the
+ * CTA-overflow case above already relies on. It is also what registers `join-bg-full.webp`'s
+ * baked-in art against the live text here: `object-fit: cover` on a 430:870 asset resolves to
+ * this same width/430 factor and top-aligns, so the two scale as one. */
+@media (max-width: 474px) {
+    .join-stage {
+        --bu: calc(100vw / 430);
+    }
+}
+
+/* The four sticker layers below are DESKTOP ONLY. On mobile they are already inside
+ * `join-bg-full.webp`, and rendering them again would double every one of them. They stay as
+ * elements because the desktop asset (`join-bg-desktop.webp`) carries the gradient and its own
+ * pixel pass but none of the stickers. The `display` flips back on inside the same media query
+ * the <picture> switches assets with, so the two can never disagree about which tier is up. */
+.join-star,
+.join-star-violet,
+.join-message-small,
+.join-message-big {
+    display: none;
+}
+@media (min-width: 475px) and (min-aspect-ratio: 430 / 932) {
+    .join-star,
+    .join-star-violet,
+    .join-message-small,
+    .join-message-big {
+        display: block;
+    }
+}
+
+/* Bleeds off the left edge on purpose — Figma's own x is negative. */
+.join-star {
+    position: absolute;
+    left: calc(-30 * var(--bu));
+    top: calc((181.5 - var(--sb)) * var(--bu));
+    width: calc(240.5 * var(--bu));
+    height: auto;
+    pointer-events: none;
+}
+
+/* Both stickers below are the same exported asset (join-message.webp) — the file itself reuses
+ * one "message bubble" sticker twice rather than shipping two images; the "big" placement is
+ * the same source flipped and rotated, exactly as Figma's own instance does it. */
+.join-message-small {
+    position: absolute;
+    left: calc(390 * var(--bu));
+    top: calc((604 - var(--sb)) * var(--bu));
+    width: calc(94 * var(--bu));
+    height: auto;
+    pointer-events: none;
+}
+
+/* Figma reports this node's layout box at x=72.56 in its raw metadata, but that is the
+ * pre-rotation box — the ~172deg rotation on a near-square sticker swings the rendered bounding
+ * box to bleed off the left edge instead (verified against the file's own rendered output and
+ * the design screenshot, where this sticker is a partial shape at the bottom-left, not centered
+ * over the body text). left/top/width/height below are that rendered box, verbatim. */
+.join-message-big {
+    position: absolute;
+    left: calc(-105 * var(--bu));
+    top: calc((586.443 - var(--sb)) * var(--bu));
+    width: calc(198.019 * var(--bu));
+    height: calc(170.594 * var(--bu));
+    transform: scaleY(-1) rotate(172.01deg);
+    pointer-events: none;
+}
+
+.join-star-violet {
+    position: absolute;
+    left: calc(354 * var(--bu));
+    top: calc((416 - var(--sb)) * var(--bu));
+    width: calc(58.5 * var(--bu));
+    height: auto;
+    pointer-events: none;
+}
+
+.join-inviter-avatar {
+    position: absolute;
+    left: calc(176 * var(--bu));
+    top: calc((98 - var(--sb)) * var(--bu));
+    width: calc(60 * var(--bu));
+    height: calc(60 * var(--bu));
+    border-radius: 50%;
+    object-fit: cover;
+    background: #fff;
+    /* Painted after the bubble in source order (see join.pug) so the design's "avatar sits in
+     * front of the bubble" reads correctly — the two overlap by design, not by accident. */
+    z-index: 1;
+}
+
+/* left/top are for the UNROTATED box; the file's own numbers (218.3, 72) are the rendered
+ * bounding box of the rotated one, which the 9.92deg swings up and to the left of it. The offset
+ * between the two was measured against the frame's own metadata, not derived — every other
+ * absolutely-placed element here (logo, avatar, both stars, cloud, small sticker) already lands
+ * on Figma's numbers to the pixel, so this was the one left out of alignment. */
+.join-inviter-bubble {
+    position: absolute;
+    left: calc(222.6 * var(--bu));
+    top: calc((88 - var(--sb)) * var(--bu));
+    width: calc(191 * var(--bu));
+    /* 191 is the file's own width for the whole bubble, padding included — without this the
+     * padding is added to it, and the 231-unit box that results is wide enough to run off the
+     * right edge of a 430 viewport (measured: 441) and get cut by .join-page's overflow-x. */
+    box-sizing: border-box;
+    padding: calc(12 * var(--bu)) calc(20 * var(--bu));
+    border-radius: calc(64 * var(--bu));
+    background: #fff;
+    box-shadow: 0 calc(4 * var(--bu)) calc(20 * var(--bu)) rgba(0, 0, 0, 0.08);
+    transform: rotate(9.92deg);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+/* 20/24, from the file's own un-rotated copy of this bubble (node 32074:22022): a 191x72 box
+ * with the text inset 20,12 and the text block itself 48 tall — two lines of 24. At 18/normal
+ * the block came out 42 and the bubble 66, six units short of the design's own height. */
+.join-inviter-username,
+.join-inviter-suffix {
+    font-weight: 800;
+    font-size: calc(20 * var(--bu));
+    line-height: calc(24 * var(--bu));
+    white-space: nowrap;
+}
+/* Sized per username rather than at the design's flat 20 (Iryna, 18/Sep: "can we make the font
+ * smaller to fit most of usernames?"). The bubble is 151 units of usable width and it cannot grow
+ * — 231 units was measured running off a 430 viewport — so the text has to give. The value comes
+ * from `resolveInviterUsernameSize`, which sums the font's real advance widths; `20` here is only
+ * the fallback for a render that somehow ships without it.
+ *
+ * `overflow-wrap: anywhere` replacing `white-space: nowrap` is the guarantee behind that estimate,
+ * not a second opinion on it: the estimate uses Helvetica's metrics while an Apple device renders
+ * Avenir Next, so it can be wrong. When it is, the username wraps to a second line inside the pill
+ * — which the bubble's own `flex-wrap` already handles — instead of spilling onto the art, which
+ * is what it did before any of this. */
+.join-inviter-username {
+    color: #9a01ff;
+    margin-right: calc(4 * var(--bu));
+    font-size: calc(var(--join-username-size, 20) * var(--bu));
+    white-space: normal;
+    overflow-wrap: anywhere;
+    /* Two lines, then cut (Iryna, 18/Sep). The ladder above keeps the common case on one line,
+     * so this only fires for a handle wide enough to defeat it — at 30 characters of `W` the
+     * pill was growing to three lines. `min-width: 0` because a flex item's `min-width: auto`
+     * floors it at its longest unbreakable run, which `overflow-wrap: anywhere` no longer has. */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    min-width: 0;
+}
+.join-inviter-suffix {
+    color: #000;
+}
+
+/* `position: relative` here — not for its own layout, but because CSS stacks positioned
+ * descendants above *every* non-positioned one, regardless of DOM order. Without this, the
+ * absolutely-positioned cloud/star/sticker layers above always paint on top of the body's plain
+ * text content, no matter where they sit in join.pug. `.join-header` doesn't need the same fix:
+ * its own children (logo, avatar, bubble) are themselves `position: absolute`, so they already
+ * take part in that same positioned-elements stacking order and paint correctly above the
+ * decorations without this. */
+/* The three gaps in this column are NOT the same number — measured off the file's own text
+ * nodes, badge→heading is 24 (442→466), heading→subtext is 16 (634→650) and subtext→CTA is 24
+ * (710→734). A single flex `gap: 24` (what this used to be) put the subtext and the CTA 8 units
+ * low. `gap: 0` plus one margin per element keeps them independent; the margins can't
+ * double-count against a gap that no longer exists, which is what broke this the first time
+ * round. The :first-child reset is for the generic branch, which renders no badge — there the
+ * heading is the first element and has to start at the badge's own y, not 24 below it. */
+.join-body {
+    position: relative;
+    width: calc(366 * var(--bu));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+}
+
+/* The file anchors the rank badge at a fixed y (416, now `.join-stage`'s own padding-top) no
+ * matter how tall the name renders — a one-line name and a three-line one both sit flush against
+ * the badge below them, growing upward instead of pushing the badge down. Absolute positioning
+ * anchored from the BOTTOM is what actually gets that: `top: -10px` (the Figma gap between the
+ * name box and the badge) plus `translateY(-100%)` puts this element's own bottom edge at that
+ * fixed point regardless of its height, which a reserved-height flex item (the previous approach
+ * here) could not do — a flex item can only push its siblings away from itself, never place
+ * itself relative to where they already are. Taking the name out of flex flow entirely is what
+ * lets `.join-body`'s own top (416) be the badge's position with no gap needed before it.
+ */
+.join-school-name-wrap {
+    position: absolute;
+    left: 50%;
+    top: calc(-10 * var(--bu));
+    transform: translate(-50%, -100%);
+    width: calc(366 * var(--bu));
+    display: flex;
+    justify-content: center;
+    /* The file's own shadow (copy-as-CSS off the "western colorado" node), but as a `filter` on
+     * this wrapper instead of `text-shadow` on the clamped h1 below. `-webkit-line-clamp` needs
+     * `overflow: hidden` on that h1 to truncate at all, and a `text-shadow` there is clipped by
+     * that same overflow — its 24-unit blur has nowhere near enough box to fade into before
+     * hitting the clip edge, so it reads as a flat gray rectangle behind the text instead of a
+     * soft shadow (confirmed on-device; not reproducible in a Chromium/headless-WebKit repro,
+     * clip-vs-shadow compositing differs enough by engine that this needed a real device to
+     * see). `filter` on this wrapper — which has no overflow of its own — paints the shadow
+     * around the h1's already-clipped output instead, with room to fade freely outside it. */
+    filter: drop-shadow(0 calc(2 * var(--bu)) calc(24 * var(--bu)) rgba(0, 0, 0, 0.35));
+}
+
+.join-school-name {
+    margin: 0;
+    font-family: 'Varsity Team', "Avenir Next", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    color: #000;
+    /* Line-height is per tier below, not here — the file's own instances don't agree (1.2 on
+     * the single-line "ucla" node, 1.1 on every multi-word/multi-line instance measured). */
+    /* The rare name long enough to blow past the CSS clamp (decision in helpers/joinPage.js's
+     * resolveSchoolNameTier) breaks mid-word rather than overflowing the column. */
+    overflow-wrap: anywhere;
+    /* The file's "sticker" text treatment: a heavy white outline behind the black fill, not a
+     * background shape. `paint-order` draws the stroke first so it never eats into the fill —
+     * tested against the alternative (default order) in both Chromium and WebKit directly:
+     * without this, the stroke paints over the fill and the letters go hollow/white in both. */
+    -webkit-text-stroke-color: #fff;
+    /* 14px per Wilson (up from the file's own 10px) — deliberately past the file's literal
+     * number to read clearly at every tier. */
+    -webkit-text-stroke-width: calc(14 * var(--bu));
+    paint-order: stroke fill;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+/* Three tiers (Iryna's DM, 16/Sep — down from four), picked by character count server-side (no
+ * font metrics to measure against — see resolveSchoolNameTier). `-webkit-line-clamp` caps each
+ * tier at the line count its own wrapper realistically needs — never pushing the badge/heading/
+ * CTA down, an ellipsis instead once a translation defeats the estimate. Past `big`'s own
+ * estimated capacity, `resolveSchoolNameDisplay` swaps the text itself for "Your Campus" rather
+ * than let it hit that ellipsis — this is that fallback's tier too, sized for the full name it
+ * replaces, not for the 11-character string actually filling it.
+ *
+ * Font-size and line-height are the file's own numbers off copy-as-CSS on its actual text
+ * instances, not guessed:
+ * - one-line: "ucla" node — 72px / 120% line-height, confirmed.
+ * - two-line: "western colorado" (17 chars) and "columbia college mo" (20 chars) — both
+ *   54px / 110%. Also absorbs the old middle bucket (9-14 chars, no confirmed instance of its
+ *   own) rather than carry an unconfirmed font size forward.
+ * - big: "CUNY Borough of Manhattan Community College" (44 chars) — 38px / 110%, confirmed at
+ *   3 lines; capped at 4 here (was 3) per Iryna's ask, same size.
+ */
+.join-school-name--one-line {
+    font-size: calc(72 * var(--bu));
+    line-height: 1.2;
+    -webkit-line-clamp: 1;
+}
+.join-school-name--two-line {
+    font-size: calc(54 * var(--bu));
+    line-height: 1.1;
+    -webkit-line-clamp: 2;
+}
+.join-school-name--big {
+    font-size: calc(38 * var(--bu));
+    line-height: 1.1;
+    -webkit-line-clamp: 4;
+}
+
+/* Same white-outline "sticker" treatment as the school name above it, just thinner — a Wilson
+ * screenshot of the file (not this MCP's own node render, which loses the stroke at this text
+ * size) confirmed the badge carries it too, over the lime block. Stroke width follows the same
+ * ~11% of font-size ratio the name uses (see .join-school-name--one-line etc.), scaled to this text's
+ * own 24px. `line-height: 1` keeps the box the same 28 units tall it was before the padding, so
+ * nothing below it moves. */
+.join-rank-badge {
+    margin: 0;
+    color: #000;
+    font-family: 'Varsity Team', "Avenir Next", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: calc(24 * var(--bu));
+    line-height: 1;
+    -webkit-text-stroke-color: #d0df74;
+    /* Same flat value as .join-school-name, same reasoning: not a ratio of font-size, and
+     * deliberately past the file's own number for legibility (per Wilson). */
+    -webkit-text-stroke-width: calc(12 * var(--bu));
+    paint-order: stroke fill;
+    border-radius: calc(6 * var(--bu));
+}
+
+.join-heading {
+    /* 24 below the badge, per .join-body's comment. */
+    margin: calc(24 * var(--bu)) 0 0;
+    font-weight: 600;
+    font-size: calc(32 * var(--bu));
+    /* 42 units per line in the file (168 over four lines), not a round 1.3. */
+    line-height: 1.3125;
+    color: #000;
+    /* Same deal as .join-subtext below: the file's four lines are hard breaks, not where a
+     * 366-unit column happens to wrap. A translation without the `\n`s still wraps normally. */
+    white-space: pre-line;
+}
+
+.join-body > :first-child {
+    margin-top: 0;
+}
+
+.join-subtext {
+    margin: calc(16 * var(--bu)) 0 0;
+    font-weight: 500;
+    font-size: calc(20 * var(--bu));
+    line-height: 1.5;
+    color: #000;
+    /* The file breaks this across two lines as a hard break, not a wrap — `\n` in the copy
+     * constant (helpers/joinPage.js), rendered here rather than collapsed. */
+    white-space: pre-line;
+}
+
+/* `min-height`, not `height`: the CTA text includes the school name (`buildJoinPageCopy`'s
+ * "Join {name} 😎"), and an abbreviation long enough to wrap two lines would clip against a
+ * fixed 78-unit button — found in the harness's "long-name" scenario, where `abbreviationDisplay`
+ * itself was the long string. Growing the button is the safe direction to fail in; the school
+ * name's own tiering (resolveSchoolNameTier) is what keeps the *common* case at one line. */
+.join-cta {
+    margin-top: calc(24 * var(--bu));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(366 * var(--bu));
+    min-height: calc(78 * var(--bu));
+    padding: calc(16 * var(--bu)) calc(24 * var(--bu));
+    border-radius: calc(39 * var(--bu));
+    background: #000;
+    color: #fff;
+    font-family: 'ES Rebond Grotesque', "Avenir Next", Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    font-size: calc(22 * var(--bu));
+    text-decoration: none;
+    text-align: center;
+    box-sizing: border-box;
+}

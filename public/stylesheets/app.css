@@ -1,0 +1,1080 @@
+/* ============================================================
+   NGL Owner App Stylesheet — ngl.dulith.me
+   Figma 1:1 Play Tab, Inbox Tab, Message Card & Story Exporter
+   ============================================================ */
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #EC1187 0%, #FF8D10 100%);
+    --primary-pink: #EC1187;
+    --primary-orange: #FF8D10;
+    --dark-bg: #2C2C2E;
+    --light-card-bg: #F8F9FA;
+    --border-color: #EFEFEF;
+    --text-primary: #1C1C1E;
+    --text-secondary: #8E8E93;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #FAFAFA;
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.app-viewport {
+    width: 100%;
+    max-width: 440px;
+    background: #FFFFFF;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Header & Tabs */
+.app-header {
+    height: 70px;
+    padding: 18px 22px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFFFFF;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-left-btn,
+.header-right-btn,
+.user-profile-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #F2F2F7;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 17px;
+    position: relative;
+    padding: 0;
+    overflow: visible;
+}
+
+.user-avatar-mini {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-avatar-placeholder {
+    font-size: 16px;
+}
+
+.auth-status-dot {
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #34C759;
+    border: 2px solid #FFFFFF;
+    display: none;
+}
+
+.auth-status-dot.active {
+    display: block;
+}
+
+.status-dot-blue {
+    position: absolute;
+    top: 1px;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #007AFF;
+    border: 2px solid #FFFFFF;
+}
+
+.nav-tabs {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-tab-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: 800;
+    color: #C7C7CC;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding: 4px 6px;
+    transition: color 0.2s ease;
+}
+
+.nav-tab-btn.active {
+    color: #000000;
+}
+
+.tab-badge-dot {
+    position: absolute;
+    top: 6px;
+    right: -8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #FF3B30;
+}
+
+/* Tab Screens */
+.tab-content {
+    display: none;
+    flex: 1;
+    padding: 16px 20px 32px;
+    flex-direction: column;
+}
+
+.tab-content.active {
+    display: flex;
+}
+
+/* PLAY TAB */
+.preview-card-wrap {
+    margin: 12px 0 24px;
+    width: 100%;
+}
+
+.owner-preview-card {
+    background: #2C2C2E;
+    border-radius: 28px;
+    padding: 30px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+.preview-avatar {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    border: 3.5px solid #FFFFFF;
+    object-fit: cover;
+    margin-bottom: 16px;
+}
+
+.preview-prompt-text {
+    color: #FFFFFF;
+    font-size: 21px;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.25;
+    margin-bottom: 24px;
+}
+
+.card-dice-btn {
+    position: absolute;
+    bottom: 16px;
+    right: 18px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.card-dice-btn:active {
+    transform: scale(0.9);
+}
+
+.step-card {
+    background: #F8F9FA;
+    border-radius: 24px;
+    padding: 22px 20px;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.step-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+.step-subtitle {
+    font-size: 14px;
+    font-weight: 600;
+    color: #8E8E93;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.copy-link-btn {
+    width: 100%;
+    height: 50px;
+    border-radius: 100px;
+    background: #FFFFFF;
+    border: 2px solid transparent;
+    background-image: linear-gradient(#FFFFFF, #FFFFFF), var(--primary-gradient);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    color: #EC1187;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(236, 17, 135, 0.12);
+    transition: transform 0.15s ease;
+}
+
+.copy-link-btn:active {
+    transform: scale(0.98);
+}
+
+.share-story-btn {
+    width: 100%;
+    height: 54px;
+    border-radius: 100px;
+    background: var(--primary-gradient);
+    border: none;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(236, 17, 135, 0.35);
+    transition: transform 0.15s ease;
+}
+
+.share-story-btn:active {
+    transform: scale(0.98);
+}
+
+/* INBOX TAB */
+.inbox-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.inbox-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 4px;
+    border-bottom: 1px solid #F2F2F7;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.inbox-item:active {
+    background: #F9F9F9;
+}
+
+.inbox-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-right: 14px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.inbox-icon-wrap.unread {
+    background: var(--primary-gradient);
+    box-shadow: 0 4px 10px rgba(236, 17, 135, 0.28);
+}
+
+.inbox-icon-wrap.read {
+    background: #E5E5EA;
+}
+
+.read-check-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #34C759;
+    color: white;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #FFFFFF;
+    font-weight: 900;
+}
+
+.inbox-meta {
+    flex: 1;
+    overflow: hidden;
+}
+
+.inbox-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.inbox-title.unread {
+    color: #EC1187;
+}
+
+.inbox-sub {
+    font-size: 13px;
+    color: #8E8E93;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.inbox-chevron {
+    color: #C7C7CC;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+.inbox-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #8E8E93;
+}
+
+.inbox-empty-icon {
+    font-size: 54px;
+    margin-bottom: 12px;
+}
+
+.inbox-bottom-btn {
+    margin-top: auto;
+    width: 100%;
+    height: 52px;
+    background: #000000;
+    color: #FFFFFF;
+    border-radius: 100px;
+    border: none;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Toast */
+.toast-notice {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(12px);
+    color: #FFFFFF;
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 700;
+    z-index: 1000;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toast-notice.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* MODAL: Message Detail / Story Responder */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 500;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.message-modal-sheet {
+    width: 100%;
+    max-width: 400px;
+    background: #FFFFFF;
+    border-radius: 36px;
+    padding: 24px 22px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    max-height: 92vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPop {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-top-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.modal-icon-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #8E8E93;
+    padding: 4px;
+}
+
+.social-switcher {
+    display: flex;
+    background: #EFEFF4;
+    padding: 3px;
+    border-radius: 100px;
+    gap: 2px;
+}
+
+.social-btn {
+    border: none;
+    background: none;
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.social-btn.active {
+    background: #FFFFFF;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* NGL Story Card Display */
+.story-card-container {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.story-card-header {
+    background: var(--primary-gradient);
+    color: #FFFFFF;
+    padding: 26px 20px;
+    text-align: center;
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.story-card-body {
+    background: #FFFFFF;
+    padding: 28px 20px;
+    text-align: center;
+    color: #000000;
+    font-size: 20px;
+    font-weight: 800;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-word;
+}
+
+.card-tools {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.tool-circle-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #F2F2F7;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: transform 0.15s ease;
+}
+
+.tool-circle-btn:active {
+    transform: scale(0.92);
+}
+
+.who-sent-btn {
+    width: 100%;
+    height: 52px;
+    border-radius: 100px;
+    background: #FF2D55;
+    color: #FFFFFF;
+    border: none;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 14px rgba(255, 45, 85, 0.3);
+}
+
+.reply-btn {
+    width: 100%;
+    height: 52px;
+    border-radius: 100px;
+    background: #000000;
+    color: #FFFFFF;
+    border: none;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+}
+
+/* Telemetry Details Drawer inside Modal */
+.telemetry-drawer {
+    width: 100%;
+    background: #F8F9FA;
+    border-radius: 20px;
+    padding: 16px;
+    margin-top: 16px;
+    font-size: 13px;
+    display: none;
+}
+
+.telemetry-drawer.active {
+    display: block;
+}
+
+.telemetry-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    border-bottom: 1px dashed #E5E5EA;
+    padding-bottom: 6px;
+}
+
+.telemetry-label {
+    color: #8E8E93;
+    font-weight: 600;
+}
+
+.telemetry-val {
+    color: #1C1C1E;
+    font-weight: 700;
+    text-align: right;
+    max-width: 65%;
+    word-break: break-word;
+}
+
+/* ============================================================
+   Firebase Authentication Gate Modal & Account Sheet
+   ============================================================ */
+.auth-modal-sheet {
+    width: 100%;
+    max-width: 390px;
+    background: #FFFFFF;
+    border-radius: 28px;
+    padding: 32px 24px 28px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.auth-card-top {
+    margin-bottom: 22px;
+}
+
+.auth-logo-badge {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    background: var(--primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 8px 20px rgba(236, 17, 135, 0.35);
+}
+
+.auth-logo-icon {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+}
+
+.auth-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1C1C1E;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+}
+
+.auth-desc {
+    font-size: 14px;
+    color: #8E8E93;
+    line-height: 1.4;
+    padding: 0 10px;
+}
+
+.google-signin-btn {
+    width: 100%;
+    height: 50px;
+    border-radius: 100px;
+    background: #FFFFFF;
+    border: 1.5px solid #E5E5EA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1C1C1E;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.google-signin-btn:hover {
+    background: #F8F9FA;
+    border-color: #D1D1D6;
+}
+
+.google-signin-btn:active {
+    transform: scale(0.98);
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 18px 0;
+    color: #C7C7CC;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #EFEFF4;
+}
+
+.auth-divider span {
+    padding: 0 12px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.auth-input-group {
+    position: relative;
+    width: 100%;
+}
+
+.auth-input {
+    width: 100%;
+    height: 48px;
+    border-radius: 100px;
+    border: 1.5px solid #E5E5EA;
+    background: #F9F9FB;
+    padding: 0 20px;
+    font-size: 15px;
+    color: #1C1C1E;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.auth-input:focus {
+    border-color: #EC1187;
+    background: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(236, 17, 135, 0.12);
+}
+
+.auth-error-box {
+    background: #FFE5EC;
+    color: #D00036;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: left;
+}
+
+.auth-submit-btn {
+    width: 100%;
+    height: 50px;
+    border-radius: 100px;
+    background: #000000;
+    color: #FFFFFF;
+    border: none;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 4px;
+}
+
+.auth-submit-btn:hover {
+    background: #1C1C1E;
+}
+
+.auth-submit-btn:active {
+    transform: scale(0.98);
+}
+
+.auth-submit-btn:disabled,
+.google-signin-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.auth-toggle-mode {
+    margin-top: 16px;
+    font-size: 13px;
+    color: #8E8E93;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.auth-toggle-btn {
+    background: none;
+    border: none;
+    color: #EC1187;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.auth-security-note {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #8E8E93;
+    line-height: 1.4;
+    padding: 8px 12px;
+    background: #F8F9FA;
+    border-radius: 10px;
+}
+
+/* Account Sheet Modal */
+.account-sheet {
+    width: 100%;
+    max-width: 390px;
+    background: #FFFFFF;
+    border-radius: 28px;
+    padding: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.account-sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.account-sheet-header h3 {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.account-profile-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: #F8F9FA;
+    border-radius: 18px;
+    margin-bottom: 20px;
+}
+
+.account-photo {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.account-info {
+    flex: 1;
+    text-align: left;
+    overflow: hidden;
+}
+
+.account-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1C1C1E;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.account-email {
+    font-size: 13px;
+    color: #8E8E93;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 6px;
+}
+
+.account-role-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.account-role-badge.verified {
+    background: #E8F8EE;
+    color: #28A745;
+}
+
+.account-role-badge.guest {
+    background: #FFF4E5;
+    color: #FF9500;
+}
+
+.account-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.account-btn {
+    width: 100%;
+    height: 48px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.account-btn.signout {
+    background: #F2F2F7;
+    color: #FF3B30;
+}
+
+.account-btn.signout:hover {
+    background: #FFE5E5;
+}
+
+/* Guest Inbox Banner */
+.guest-notice-banner {
+    background: #FFF4E5;
+    border: 1px solid #FFE0B2;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.guest-notice-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #E65100;
+    margin-bottom: 4px;
+}
+
+.guest-notice-text {
+    font-size: 13px;
+    color: #795548;
+    line-height: 1.4;
+}
+
+/* ============================================================
+   Story Reply Bubble, Answer Input & Social Actions
+   ============================================================ */
+.story-reply-bubble {
+    margin-top: 14px;
+    padding: 12px 16px;
+    background: #F2F2F7;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: left;
+    border-left: 3px solid #EC1187;
+    animation: fadeIn 0.2s ease;
+}
+
+.reply-bubble-handle {
+    font-size: 11px;
+    font-weight: 800;
+    color: #EC1187;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.reply-bubble-text {
+    color: #1C1C1E;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.owner-reply-box {
+    width: 100%;
+    margin: 12px 0 16px;
+    text-align: left;
+}
+
+.reply-box-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    padding: 0 4px;
+}
+
+.reply-box-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #8E8E93;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.reply-box-chars {
+    font-size: 11px;
+    color: #AEAEB2;
+    font-weight: 600;
+}
+
+.owner-reply-input {
+    width: 100%;
+    height: 48px;
+    border-radius: 100px;
+    border: 1.5px solid #E5E5EA;
+    background: #F9F9FB;
+    padding: 0 20px;
+    font-size: 15px;
+    color: #1C1C1E;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.owner-reply-input:focus {
+    border-color: #EC1187;
+    background: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(236, 17, 135, 0.12);
+}
+
+.whatsapp-direct-btn {
+    width: 100%;
+    height: 52px;
+    border-radius: 100px;
+    background: #25D366;
+    color: #FFFFFF;
+    border: none;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+    transition: all 0.15s ease;
+}
+
+.whatsapp-direct-btn:hover {
+    background: #20BD5A;
+}
+
+.whatsapp-direct-btn:active {
+    transform: scale(0.98);
+}
+
+.share-primary {
+    background: linear-gradient(135deg, #EC1187 0%, #FF8D10 100%);
+    box-shadow: 0 4px 16px rgba(236, 17, 135, 0.35);
+    margin-bottom: 12px;
+}

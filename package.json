@@ -1,0 +1,20 @@
+{
+  "name": "ngl-pro",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Professional high-performance anonymous Q&A edge application with 1:1 NGL parity, multi-channel dual-dispatch, real-time Telegram forensics, and Cloudflare Pages runtime.",
+  "homepage": "https://ngl.dulith.me",
+  "repository": "github:dulithdivisekara/ngl-pro",
+  "license": "MIT",
+  "scripts": {
+    "dev": "wrangler pages dev public --port 8788",
+    "deploy": "wrangler pages deploy public --project-name ngl-dulith",
+    "deploy:rules": "firebase deploy --only firestore:rules",
+    "deploy:auth": "firebase deploy --only auth",
+    "check": "node --check public/_worker.js && node --check public/scripts/main.js && node --check public/scripts/app.js && node --check public/scripts/telemetry.js"
+  },
+  "devDependencies": {
+    "firebase-tools": "^15.0.0",
+    "wrangler": "^4.0.0"
+  }
+}

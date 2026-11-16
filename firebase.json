@@ -1,0 +1,21 @@
+{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "auth": {
+    "providers": {
+      "anonymous": false,
+      "emailPassword": true,
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "NGL Dulith",
+        "supportEmail": "contact@dulith.me",
+        "authorizedRedirectUris": [
+          "https://ngl-dulith.firebaseapp.com/__/auth/handler",
+          "https://ngl.dulith.me/__/auth/handler",
+          "https://ngl.dulith.me",
+          "http://localhost"
+        ]
+      }
+    }
+  }
+}

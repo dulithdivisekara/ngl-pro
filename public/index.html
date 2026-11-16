@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@dulithdivisekara</title>
+    <link rel="stylesheet" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="shortcut icon" href="/images/ngl.png">
+    <link rel="apple-touch-icon" href="/images/ngl.png">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+    <meta property="og:title" content="@dulithdivisekara: Send me anonymous messages!">
+    <meta property="og:description" content="NGL: Anonymous Q&A">
+    <meta property="og:image" content="https://ngl.dulith.me/images/ngl.png">
+    <meta property="og:image:secure_url" content="https://ngl.dulith.me/images/ngl.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="@dulithdivisekara: Send me anonymous messages!">
+    <meta name="twitter:description" content="NGL: Anonymous Q&A">
+    <meta name="twitter:image" content="https://ngl.dulith.me/images/ngl.png">
+    <style>
+        /* Smooth transitions for placeholder animations */
+        .textarea-placeholder {
+            position: absolute;
+            top: 18px;
+            left: 24px;
+            right: 48px;
+            color: rgba(0, 0, 0, 0.35);
+            font-size: 20px;
+            font-weight: 600;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .textarea-placeholder.fade-out {
+            opacity: 0;
+        }
+        .textarea-placeholder.fade-in {
+            opacity: 1;
+        }
+        .dice-button {
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            transition: transform 0.15s ease;
+        }
+        .dice-button:active {
+            transform: scale(0.88) rotate(15deg);
+        }
+    </style>
+</head>
+<body class="has-sticky-ad">
+    <div class="container" style="z-index: 1000; position: relative">
+        <form class="form" id="ask-form" method="post" action="/api/submit">
+            <div class="bubble">
+                <div class="header">
+                    <div class="pfp-container">
+                        <img class="pfp" src="/images/avatar.webp" alt="Dulith">
+                    </div>
+                    <div class="user-container">
+                        <div class="username">@dulithdivisekara</div>
+                        <div class="prompt">send me anonymous messages!</div>
+                    </div>
+                </div>
+                <div class="textarea-container">
+                    <div class="dice-button" id="dice-btn" title="Randomize prompt">🎲</div>
+                    <textarea name="question" autocomplete="off" maxlength="300" id="question" required></textarea>
+                    <div class="textarea-placeholder" id="placeholder">send me anonymous messages...</div>
+                </div>
+                <input class="deviceId" type="hidden" name="deviceId" id="deviceId">
+            </div>
+            <div class="anonymous-tooltip">🔒 anonymous q&amp;a</div>
+            <button class="submit" id="submit-btn" type="submit" style="transform: translateZ(0px); z-index: 1000">Send!</button>
+        </form>
+    </div>
+
+    <div class="bottom-container-user-wrapper">
+        <div class="bottom-container">
+            <h2 class="download-prompt">👇 <span class="clickCount">220</span> friends just tapped the button👇 </h2>
+            <div class="space2"></div>
+            <a class="button download-link download-link1 pulse" href="/app.html">Get your own messages!</a>
+            <div class="tos-privacy">
+                <a class="tos" href="#">Terms</a>
+                <a class="privacy" href="#">Privacy</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/telemetry.js"></script>
+    <script src="/scripts/main.js"></script>
+</body>
+</html>

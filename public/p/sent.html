@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>NGL - Sent!</title>
+    <link rel="stylesheet" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="shortcut icon" href="/images/ngl.png">
+    <link rel="apple-touch-icon" href="/images/ngl.png">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+    <meta name="user:language" content="en">
+    <meta property="og:title" content="Message Sent!">
+    <meta property="og:description" content="NGL: Anonymous Q&A">
+    <meta property="og:image" content="https://ngl.dulith.me/images/ngl.png">
+    <meta property="og:image:secure_url" content="https://ngl.dulith.me/images/ngl.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://ngl.dulith.me/images/ngl.png">
+    <style>
+        html {
+            background: linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%);
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <a class="another1" href="javascript:history.back()">
+                <img src="/images/left.png" width="24" height="24" alt="Back">
+            </a>
+        </div>
+        <div class="space2"></div>
+        <img class="check" id="sent-check" src="/images/sent.png" alt="Sent">
+        <div class="space2"></div>
+        <div id="sent-standard-flow" style="width:100%; text-align:center">
+            <h2 class="web-push-title">Sent!</h2>
+            <p class="web-push-body">👇<span class="clickCount">249</span> friends just tapped the button 👇</p>
+            <a class="button download-link download-link2 pulse" href="/app.html">Get your own messages!</a>
+            <div class="space2"></div>
+            <a class="another another1" href="javascript:history.back()">Send another message</a>
+        </div>
+    </div>
+
+    <script>
+        // Live counter jitter
+        const clickCountEl = document.querySelector('.clickCount');
+        if (clickCountEl) {
+            setInterval(() => {
+                let count = parseInt(clickCountEl.textContent, 10);
+                if (!isNaN(count)) {
+                    count += Math.floor(Math.random() * 5) - 1;
+                    if (count < 180) count = 210;
+                    clickCountEl.textContent = count;
+                }
+            }, 850);
+        }
+    </script>
+</body>
+</html>

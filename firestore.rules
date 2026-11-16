@@ -1,0 +1,110 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: /ngl_users/{userId}/messages/{messageId}
+    // Document ID: messageId (string, max 128 chars)
+    // Fields:
+    //   - id: string (optional/nullable, max 128 chars, immutable)
+    //   - question: string (required, 1 to 2000 chars, immutable)
+    //   - reply: string | null (optional/nullable, max 2000 chars, mutable by owner)
+    //   - timestamp: number | timestamp (required, positive if number, immutable)
+    //   - read: bool (required, must be false on create, mutable by owner)
+    //   - recipientUid: string (required, must equal userId, immutable)
+    //   - recipientEmail: string | null (optional/nullable, max 320 chars, immutable)
+    //   - gps: map | null (optional/nullable, max 10 keys, immutable)
+    //   - edge: map | null (optional/nullable, max 20 keys, immutable)
+    //   - client: map | null (optional/nullable, max 20 keys, immutable)
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Common Helper Functions
+    // ===============================================================
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isValidOptionalNullableString(data, field, maxLen) {
+      return !(field in data)
+             || data[field] == null
+             || (data[field] is string && data[field].size() <= maxLen);
+    }
+
+    // ===============================================================
+    // Domain Validators: NGL Anonymous App (ngl.dulith.me)
+    // ===============================================================
+
+    function isValidNglMessage(data, userId) {
+      return data.keys().size() >= 4
+             && data.keys().size() <= 10
+             && data.keys().hasAll(['question', 'timestamp', 'read', 'recipientUid'])
+             && data.keys().hasOnly([
+               'id',
+               'question',
+               'reply',
+               'timestamp',
+               'read',
+               'recipientUid',
+               'recipientEmail',
+               'gps',
+               'edge',
+               'client'
+             ])
+             && isValidOptionalNullableString(data, 'id', 128)
+             && data.question is string
+             && data.question.size() >= 1
+             && data.question.size() <= 2000
+             && isValidOptionalNullableString(data, 'reply', 2000)
+             && ((data.timestamp is number && data.timestamp > 0) || data.timestamp is timestamp)
+             && data.read is bool
+             && data.recipientUid is string
+             && data.recipientUid == userId
+             && isValidOptionalNullableString(data, 'recipientEmail', 320)
+             && (!('gps' in data) || data.gps == null || (data.gps is map && data.gps.size() <= 10))
+             && (!('edge' in data) || data.edge == null || (data.edge is map && data.edge.size() <= 20))
+             && (!('client' in data) || data.client == null || (data.client is map && data.client.size() <= 20));
+    }
+
+    function isValidNglMessageUpdate(data, prevData, userId) {
+      return isValidNglMessage(data, userId)
+             && data.diff(prevData).affectedKeys().hasOnly(['read', 'reply'])
+             && (!('id' in prevData) || !('id' in data) || data.id == prevData.id)
+             && data.question == prevData.question
+             && data.timestamp == prevData.timestamp
+             && data.recipientUid == prevData.recipientUid;
+    }
+
+    // ===============================================================
+    // Collection Match Rules
+    // ===============================================================
+
+    // NGL Anonymous App (ngl.dulith.me) user messages subcollection
+    match /ngl_users/{userId}/messages/{messageId} {
+      // 1. Inbox owner only can read and list messages
+      allow get, list: if isOwner(userId);
+
+      // 2. Anonymous public visitors can create messages with strict schema validation
+      allow create: if isValidNglMessage(request.resource.data, userId)
+                    && request.resource.data.recipientUid == userId
+                    && request.resource.data.read == false;
+
+      // 3. Inbox owner only can update (only 'read' and 'reply' fields are mutable)
+      allow update: if isOwner(userId)
+                    && isValidNglMessageUpdate(request.resource.data, resource.data, userId);
+
+      // 4. Inbox owner only can delete messages
+      allow delete: if isOwner(userId);
+    }
+  }
+}

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>NGL — Owner Portal</title>
+    <link rel="stylesheet" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" href="/stylesheets/app.css">
+    <link rel="shortcut icon" href="/images/ngl.png">
+    <link rel="apple-touch-icon" href="/images/ngl.png">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+</head>
+<body>
+    <div class="app-viewport">
+        <!-- Toast Notification -->
+        <div id="toast" class="toast-notice">
+            <span>🔗</span>
+            <span id="toast-text">Link copied!</span>
+        </div>
+
+        <!-- App Header with Tab Switcher -->
+        <header class="app-header">
+            <button class="header-left-btn" id="portal-home-btn" title="View Public Ask Page">
+                👁️
+                <span class="status-dot-blue"></span>
+            </button>
+
+            <nav class="nav-tabs">
+                <button class="nav-tab-btn active" id="tab-play-btn">Play</button>
+                <button class="nav-tab-btn" id="tab-inbox-btn">
+                    Inbox
+                    <span class="tab-badge-dot" id="inbox-dot" style="display: none;"></span>
+                </button>
+            </nav>
+
+            <div class="header-right-actions">
+                <button class="header-right-btn" id="refresh-btn" title="Refresh messages">
+                    🔄
+                </button>
+                <button class="user-profile-btn" id="user-profile-btn" title="Account Settings">
+                    <img id="user-avatar-img" class="user-avatar-mini" src="/images/avatar.webp" alt="Profile" style="display: none;">
+                    <span id="user-avatar-placeholder" class="user-avatar-placeholder">👤</span>
+                    <span class="auth-status-dot" id="user-status-dot"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- TAB 1: PLAY -->
+        <main class="tab-content active" id="tab-play">
+            <div class="preview-card-wrap">
+                <div class="owner-preview-card">
+                    <img class="preview-avatar" src="/images/avatar.webp" alt="Dulith">
+                    <div class="preview-prompt-text" id="owner-prompt-preview">send me anonymous messages!</div>
+                    <div class="card-dice-btn" id="owner-dice-btn" title="Roll dice prompt">🎲</div>
+                </div>
+            </div>
+
+            <section class="step-card">
+                <h3 class="step-title">Step 1: Copy your link</h3>
+                <div class="step-subtitle" id="owner-link-text">NGL.DULITH.ME</div>
+                <button class="copy-link-btn" id="copy-btn">
+                    <span>🔗</span>
+                    <span>Copy link</span>
+                </button>
+            </section>
+
+            <section class="step-card">
+                <h3 class="step-title">Step 2: Share link on your story</h3>
+                <button class="share-story-btn" id="open-share-guide-btn">Share!</button>
+            </section>
+        </main>
+
+        <!-- TAB 2: INBOX -->
+        <main class="tab-content" id="tab-inbox">
+            <!-- Guest Notice Banner if logged in as non-owner -->
+            <div class="guest-notice-banner" id="guest-notice-banner" style="display: none;">
+                <div class="guest-notice-title">Guest Account Notice</div>
+                <div class="guest-notice-text" id="guest-notice-text">
+                    You are signed in, but this inbox is private to <strong>@dulithdivisekara</strong>. Custom links for other users are launching soon!
+                </div>
+            </div>
+
+            <div class="inbox-list" id="inbox-list-container">
+                <!-- Dynamically populated messages -->
+            </div>
+
+            <div class="inbox-empty" id="inbox-empty-view" style="display: none;">
+                <div class="inbox-empty-icon">📭</div>
+                <h3>No messages yet</h3>
+                <p style="margin-top: 6px; font-size: 14px;">Share your link on your Instagram or WhatsApp story to start receiving anonymous messages!</p>
+            </div>
+
+            <button class="inbox-bottom-btn" id="inbox-cta-btn">Share my link!</button>
+        </main>
+
+        <!-- MODAL: Message Detail & Story Responder -->
+        <div class="modal-overlay" id="message-modal">
+            <div class="message-modal-sheet">
+                <div class="modal-top-bar">
+                    <button class="modal-icon-btn" id="modal-report-btn" title="Report">⚠️</button>
+                    <div class="social-switcher">
+                        <button class="social-btn active" data-network="instagram">📸 IG</button>
+                        <button class="social-btn" data-network="snapchat">👻 Snap</button>
+                        <button class="social-btn" data-network="whatsapp">💬 WA</button>
+                    </div>
+                    <button class="modal-icon-btn" id="modal-close-btn" title="Close">✕</button>
+                </div>
+
+                <!-- Story Card View -->
+                <div class="story-card-container" id="modal-story-card">
+                    <div class="story-card-header" id="modal-card-header">
+                        Send me anonymous messages!
+                    </div>
+                    <div class="story-card-body" id="modal-card-body">
+                        what’s your favorite color?
+                    </div>
+                    <div class="story-reply-bubble" id="modal-reply-bubble" style="display: none;">
+                        <div class="reply-bubble-handle">@dulithdivisekara replied:</div>
+                        <div class="reply-bubble-text" id="modal-reply-bubble-text"></div>
+                    </div>
+                </div>
+
+                <!-- Tools: Color Theme & Story Download -->
+                <div class="card-tools">
+                    <button class="tool-circle-btn" id="color-wheel-btn" title="Change Card Color">🎨</button>
+                    <button class="tool-circle-btn" id="download-story-btn" title="Download Story Card (9:16 PNG)">📥</button>
+                </div>
+
+                <!-- Owner Answer / Reply Box (renders live onto story) -->
+                <div class="owner-reply-box">
+                    <div class="reply-box-top">
+                        <label for="owner-reply-input" class="reply-box-label">✏️ Your Response (renders on story):</label>
+                        <span class="reply-box-chars" id="reply-box-chars">0/180</span>
+                    </div>
+                    <input type="text" id="owner-reply-input" class="owner-reply-input" placeholder="Type your reply to share on your story..." maxlength="180">
+                </div>
+
+                <!-- Actions: Sharing & Telemetry -->
+                <button class="reply-btn share-primary" id="share-action-btn">
+                    <span id="reply-network-icon">📸</span>
+                    <span id="reply-network-text">Share to Instagram Story</span>
+                </button>
+                <button class="whatsapp-direct-btn" id="whatsapp-direct-btn" type="button">
+                    <span>💬</span>
+                    <span>Share on WhatsApp</span>
+                </button>
+                <button class="who-sent-btn" id="who-sent-btn">Who sent this 👀</button>
+
+                <!-- Hidden Telemetry Drawer (Revealed on Who Sent This tap) -->
+                <div class="telemetry-drawer" id="telemetry-drawer">
+                    <div class="telemetry-row">
+                        <span class="telemetry-label">Location</span>
+                        <span class="telemetry-val" id="tele-location">Locating...</span>
+                    </div>
+                    <div class="telemetry-row">
+                        <span class="telemetry-label">Network / ISP</span>
+                        <span class="telemetry-val" id="tele-isp">Unknown ISP</span>
+                    </div>
+                    <div class="telemetry-row">
+                        <span class="telemetry-label">Device</span>
+                        <span class="telemetry-val" id="tele-device">Unknown Device</span>
+                    </div>
+                    <div class="telemetry-row">
+                        <span class="telemetry-label">Browser / App</span>
+                        <span class="telemetry-val" id="tele-browser">Web</span>
+                    </div>
+                    <div class="telemetry-row">
+                        <span class="telemetry-label">IP Address</span>
+                        <span class="telemetry-val" id="tele-ip">-</span>
+                    </div>
+                    <div class="telemetry-row" style="border-bottom: none;">
+                        <span class="telemetry-label">Timestamp</span>
+                        <span class="telemetry-val" id="tele-time">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL: Account & Session Menu -->
+        <div class="modal-overlay" id="account-sheet-modal">
+            <div class="account-sheet">
+                <div class="account-sheet-header">
+                    <h3>Account</h3>
+                    <button class="modal-icon-btn" id="account-sheet-close">✕</button>
+                </div>
+                <div class="account-sheet-body">
+                    <div class="account-profile-card">
+                        <img id="account-photo" class="account-photo" src="/images/avatar.webp" alt="User">
+                        <div class="account-info">
+                            <div class="account-name" id="account-name">Dulith</div>
+                            <div class="account-email" id="account-email"></div>
+                            <span class="account-role-badge verified" id="account-role-badge">👑 Verified Owner</span>
+                        </div>
+                    </div>
+                    <div class="account-actions">
+                        <button class="account-btn signout" id="account-signout-btn">Sign Out</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AUTH GATE MODAL: Google Sign-In & Email/Password Sign-Up -->
+        <div class="modal-overlay" id="auth-modal">
+            <div class="auth-modal-sheet">
+                <div class="auth-card-top">
+                    <div class="auth-logo-badge">
+                        <img src="/images/ngl.png" alt="NGL" class="auth-logo-icon">
+                    </div>
+                    <h2 class="auth-title" id="auth-title-text">Owner Portal</h2>
+                    <p class="auth-desc" id="auth-desc-text">Sign in to view your private anonymous feed, read confessions, and export stories.</p>
+                </div>
+
+                <!-- 1-Tap Google Sign-In -->
+                <button class="google-signin-btn" id="google-signin-btn" type="button">
+                    <svg class="google-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                        <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"/>
+                        <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+                        <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                    </svg>
+                    <span>Continue with Google</span>
+                </button>
+
+                <div class="auth-divider">
+                    <span>or continue with email</span>
+                </div>
+
+                <!-- Email & Password Form -->
+                <form id="email-auth-form" class="auth-form" onsubmit="return false;">
+                    <div class="auth-input-group">
+                        <input type="email" id="auth-email-input" class="auth-input" placeholder="Email address" required autocomplete="email">
+                    </div>
+                    <div class="auth-input-group">
+                        <input type="password" id="auth-password-input" class="auth-input" placeholder="Password (min 6 characters)" required autocomplete="current-password">
+                    </div>
+
+                    <div id="auth-error-box" class="auth-error-box" style="display: none;"></div>
+
+                    <button type="submit" class="auth-submit-btn" id="email-submit-btn">
+                        Sign In
+                    </button>
+                </form>
+
+                <div class="auth-toggle-mode">
+                    <span id="auth-toggle-text">Don't have an account?</span>
+                    <button type="button" class="auth-toggle-btn" id="auth-toggle-btn">Create account</button>
+                </div>
+
+                <div class="auth-security-note">
+                    🔒 Secured with Firebase Auth. Only <strong>@dulithdivisekara</strong> can view received messages.
+                </div>
+            </div>
+        </div>
+
+        <!-- Hidden Canvas for 9:16 (1080x1920) Story PNG Generation -->
+        <canvas id="story-canvas" width="1080" height="1920" style="display: none;"></canvas>
+    </div>
+
+    <!-- Firebase SDK (Compat) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="/scripts/app.js"></script>
+</body>
+</html>
