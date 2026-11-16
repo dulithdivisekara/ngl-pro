@@ -31,15 +31,11 @@
   <a href="#license">License</a>
 </p>
 
----
-
 ## Overview
 
 **ngl-pro** is an enterprise-grade, serverless anonymous messaging engine. Designed with strict 1:1 behavioral and visual fidelity to the original NGL client, it incorporates multi-channel upstream dispatch, detailed device forensics, first-party edge authentication proxying, and cryptographic identity verification.
 
 The platform executes globally on Cloudflare Pages Advanced Mode (`_worker.js`), requiring zero persistent origin servers. Every anonymous submission is processed at the edge, logged into Google Cloud Firestore, dispatched via Telegram Bot with live geographic data, and mirrored to the recipient's official NGL mobile app inbox simultaneously. Furthermore, Firebase Authentication is proxied directly through the primary apex/subdomain (`ngl.dulith.me/__/auth/*`), eliminating third-party cookie restrictions and cross-domain tracking warnings.
-
----
 
 ## Visual Previews
 
@@ -57,8 +53,6 @@ The platform executes globally on Cloudflare Pages Advanced Mode (`_worker.js`),
     </tr>
   </table>
 </div>
-
----
 
 ## Architecture
 
@@ -91,8 +85,6 @@ sequenceDiagram
     Edge-->>Owner: 200 OK (inbox feed & story generator)
 ```
 
----
-
 ## Operational Matrix
 
 | Dimension | Public Ingress Surface | Administrative Inbox Portal |
@@ -103,8 +95,6 @@ sequenceDiagram
 | **Downstream Sync** | Firestore, Telegram Bot, Official NGL API | Firestore Document Patch & Reply Generator |
 | **Rate Limiting** | Edge Client Telemetry, IP & Device Hash | Cryptographic Session Verification |
 | **Display Modes** | Compact Summary Card & Wide Landscape Banner | Authenticated Web Dashboard & Story Exporter |
-
----
 
 ## Project Structure
 
@@ -142,8 +132,6 @@ sequenceDiagram
         └── telemetry.js       # Client-side hardware, network & GPS geolocation sampler
 ```
 
----
-
 ## Forensics & Telemetry
 
 When an anonymous message is submitted, the Cloudflare Edge Worker captures non-identifying technical forensics and dispatches an actionable security card to the owner's Telegram bot:
@@ -167,8 +155,6 @@ When an anonymous message is submitted, the Cloudflare Edge Worker captures non-
     </tr>
   </table>
 </div>
-
----
 
 ## Security Model & Hardening
 
@@ -195,8 +181,6 @@ To prevent unauthorized consumption of client-facing Google Cloud identifiers:
   * `Cloud Firestore API`
   * `Secure Token Service API`
 * **Firestore Security Rules**: Database rules enforce that non-authenticated clients have zero read or list access to `ngl_users`, while authenticated queries strictly require `request.auth.uid == userId`.
-
----
 
 ## Deployment
 
@@ -245,13 +229,9 @@ Deploy Firestore security rules:
 npx firebase deploy --only firestore:rules
 ```
 
----
-
 ## Credits
 
 Special thanks to **[Kesaru Hasun](https://github.com/kesaruhasun)** for the initial project concept and early codebase foundation.
-
----
 
 ## License
 

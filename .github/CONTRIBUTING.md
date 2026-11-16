@@ -2,8 +2,6 @@
 
 Thank you for your interest in contributing to **ngl-pro**! We follow structured engineering practices to maintain 1:1 parity with the official NGL platform, sub-millisecond edge latency, and strict security posture.
 
----
-
 ## Development Workflow
 
 ### 1. Local Environment Setup
@@ -28,8 +26,6 @@ Thank you for your interest in contributing to **ngl-pro**! We follow structured
    npx wrangler pages dev public
    ```
 
----
-
 ## Branching & Commit Conventions
 
 ### Branch Strategy
@@ -47,15 +43,11 @@ We adhere to [Conventional Commits](https://www.conventionalcommits.org/):
 * `refactor:` Code restructuring that does not modify behavior.
 * `security:` Security fixes, credential rotation, or rules hardening.
 
----
-
 ## Code Quality Standards
 
 * **Zero Hardcoded Secrets**: Under no circumstance should tokens, keys, or credentials be committed into the repository.
 * **1:1 Visual Parity**: All UI alterations to `index.html` or `p/sent.html` must preserve exact layout, typography, animations, and color standards matching official NGL interfaces.
 * **Edge Compatibility**: Code inside `public/_worker.js` must adhere strictly to the Cloudflare Workers / V8 isolate runtime constraints. Avoid Node.js-specific modules (`fs`, `net`, `child_process`).
-
----
 
 ## Submitting Pull Requests
 

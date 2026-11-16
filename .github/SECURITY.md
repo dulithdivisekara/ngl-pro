@@ -6,10 +6,8 @@ Only the latest production deployment running on Cloudflare Pages and Google Clo
 
 | Version | Edge Runtime | Status | Supported |
 | :--- | :--- | :--- | :---: |
-| **1.x** | Cloudflare Pages Advanced (`_worker.js`) | Production | :white_check_mark: |
-| **< 1.0** | Legacy monorepo snapshots | Deprecated | :x: |
-
----
+| **1.x** | Cloudflare Pages Advanced (`_worker.js`) | Production | Yes |
+| **< 1.0** | Legacy monorepo snapshots | Deprecated | No |
 
 ## Zero-Trust Architecture & Threat Model
 
@@ -20,8 +18,6 @@ The **ngl-pro** architecture operates on a defense-in-depth model:
 3. **API Key Guardrails**: Google Cloud API keys are locked via HTTP referrer restrictions (`https://ngl.dulith.me/*`, `https://ngl-dulith.pages.dev/*`, `https://ngl-dulith.firebaseapp.com/*`) and scoped strictly to `Identity Toolkit API`, `Cloud Firestore API`, and `Secure Token Service`.
 4. **Database Access Control**: Firestore security rules enforce strict schema validation for anonymous submissions and restrict all read operations to the authenticated owner UID.
 5. **Webhook Authorization**: `/api/telegram-webhook` validates incoming chat IDs against the encrypted `TELEGRAM_CHAT_ID` (and optional `TELEGRAM_WEBHOOK_SECRET` header) before returning telemetry or configuration responses.
-
----
 
 ## Reporting a Vulnerability
 
